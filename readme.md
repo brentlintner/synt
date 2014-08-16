@@ -1,8 +1,8 @@
 # synt
 
-[![NPM version](https://badge.fury.io/js/synt)](http://badge.fury.io/js/synt)
+[![NPM version](https://badge.fury.io/js/synt.svg)](http://badge.fury.io/js/synt)
 [![Build Status](https://drone.io/github.com/brentlintner/synt/status.png)](https://drone.io/github.com/brentlintner/synt/latest)
-[![Coverage Status](https://img.shields.io/coveralls/brentlintner/synt)](https://coveralls.io/r/brentlintner/synt)
+[![Coverage Status](https://img.shields.io/coveralls/brentlintner/synt.svg)](https://coveralls.io/r/brentlintner/synt)
 [![Dependency Status](https://david-dm.org/brentlintner/synt.svg)](https://david-dm.org/brentlintner/synt)
 [![devDependency Status](https://david-dm.org/brentlintner/synt/dev-status.svg)](https://david-dm.org/brentlintner/synt#info=devDependencies)
 
