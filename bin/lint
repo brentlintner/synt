@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+coffeelint --nocolor -q {src,test} &&
+npm run postinstall &&
+jshint .

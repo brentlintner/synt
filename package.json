@@ -1,0 +1,55 @@
+{
+  "name": "synt",
+  "version": "0.1.0",
+  "description": "Similar code analysis.",
+  "author": "Brent Lintner <brent.lintner@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/brentlintner/synt.git"
+  },
+  "keywords": [
+    "duplicate",
+    "similar",
+    "dissimilar",
+    "analysis",
+    "compare",
+    "comparison"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brentlintner/synt/issues"
+  },
+  "homepage": "https://github.com/brentlintner/synt",
+  "bin": {
+    "synt": "bin/cli"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "compile": "bin/compile",
+    "postinstall": "npm run compile",
+    "lint": "bin/lint",
+    "lint-cov": "bin/lint-cov",
+    "dev": "bin/dev",
+    "test": "bin/test",
+    "test-cov": "bin/test-cov",
+    "test-ci-build": "bin/test-ci-build"
+  },
+  "dependencies": {
+    "coffee-script": "1.7.1",
+    "commander": "2.3.0",
+    "esprima": "1.2.2",
+    "lodash": "2.4.1",
+    "minilog": "2.0.6"
+  },
+  "devDependencies": {
+    "chai": "1.9.1",
+    "coffeelint": "1.5.6",
+    "coveralls": "2.11.1",
+    "istanbul": "0.3.0",
+    "jshint": "2.5.3",
+    "mimus": "0.1.2",
+    "mocha": "1.21.4",
+    "sinon": "1.10.3",
+    "sinon-chai": "2.5.0"
+  }
+}

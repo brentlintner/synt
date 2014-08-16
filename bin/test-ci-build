@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+npm run lint &&
+npm run test-cov &&
+npm run lint-cov
+
+# http://docs.drone.io/env.html
+if [[ ! -z "$CI" ]]; then
+  echo "sending lcov data to coveralls.io"
+  cat coverage/lcov.info | coveralls
+fi

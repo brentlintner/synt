@@ -1,0 +1,5 @@
+node_modules
+**/*.js
+!test/fixtures/compare-js*.js
+coverage
+notes.txt

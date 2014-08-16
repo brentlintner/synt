@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+rm -r coverage/
+istanbul cover --dir coverage bin/test
