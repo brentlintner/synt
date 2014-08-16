@@ -18,10 +18,9 @@ experimental = (src, cmp) ->
   src.forEach (s, si) ->
     max += 1
     cmp.forEach (c, ci) ->
-      max += 1
       hit += 1 if s is c
 
-  sim = hit / max * 100
+  sim = hit / max * 100; sim = 100 if sim > 100
 
   log.debug "src length: #{src.length}"
   log.debug "cmp length: #{cmp.length}"
