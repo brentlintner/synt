@@ -40,6 +40,7 @@
     "esprima": "1.2.2",
     "lodash": "2.4.1",
     "minilog": "2.0.6",
+    "nconf": "0.6.9",
     "shelljs": "0.3.0"
   },
   "devDependencies": {
