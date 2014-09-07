@@ -39,7 +39,8 @@
     "commander": "2.3.0",
     "esprima": "1.2.2",
     "lodash": "2.4.1",
-    "minilog": "2.0.6"
+    "minilog": "2.0.6",
+    "shelljs": "0.3.0"
   },
   "devDependencies": {
     "chai": "1.9.1",
