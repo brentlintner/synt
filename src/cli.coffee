@@ -1,23 +1,40 @@
+path = require "path"
 cli = require "commander"
-fs = require "fs"
+shell = require "shelljs"
 similar = require "./similar"
+error = require "./error"
 logger = require "./logger"
 pkg = require "./../package"
 log = logger.create "cli"
+synt_rb = path.join __dirname, "../ruby/bin/synt"
 
-determine = (file_or_string) ->
-  if fs.existsSync file_or_string
-  then fs.readFileSync file_or_string, "utf-8"
-  else file_or_string
+similar_rb = (o) ->
+  if not shell.which "bundle"
+    error "Can not find a bundle in PATH- Ruby support will not work."
+
+  cmd = synt_rb
+
+  cmd += " -c " + o.compare if o.compare
+  cmd += " -t " + o.to if o.to
+  cmd += " -d " + o.threshold if o.threshold
+  cmd += " -n " + o.ngram if o.ngram
+  cmd += " -a " + o.algorithm if o.algorithm
+
+  log.info cmd
+
+  res = shell.exec cmd
+
+  process.stdout.write res.output
+
+  if res.code != 0
+    log.error "synt-rb script failed!"
+    process.exit res.code
 
 run = (cli) ->
-  diff = similar.compare
-    compare: determine cli.compare
-    to: determine cli.to
-    algorithm: cli.algorithm
-    language: cli.language
-    ngram: cli.ngram
+  if cli.language == "rb"
+    return similar_rb cli
 
+  diff = similar.compare cli
   console.log "Inputs are %#{Math.floor diff} similar."
 
   if diff < cli.threshold

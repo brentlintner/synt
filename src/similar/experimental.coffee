@@ -22,13 +22,6 @@ experimental = (src, cmp) ->
 
   sim = hit / max * 100; sim = 100 if sim > 100
 
-  log.debug "src length: #{src.length}"
-  log.debug "cmp length: #{cmp.length}"
-  log.debug "max points is #{max}"
-  log.debug "hit points are #{hit}"
-  log.debug "hit: #{hit}"
-  log.debug "max: #{max}"
-
   sim
 
 module.exports =

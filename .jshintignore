@@ -3,3 +3,4 @@ bower_modules
 .git
 public
 coverage
+ruby/coverage

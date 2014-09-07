@@ -26,11 +26,11 @@
   "main": "lib/index.js",
   "scripts": {
     "compile": "bin/compile",
-    "postinstall": "npm run compile",
+    "dev": "bin/dev",
     "lint": "bin/lint",
     "lint-cov": "bin/lint-cov",
-    "dev": "bin/dev",
-    "test": "bin/test",
+    "postinstall": "npm run compile && (cd ruby && bundle --without development || true) && cd ../",
+    "test": "bin/test && bin/test-ruby",
     "test-cov": "bin/test-cov",
     "test-ci-build": "bin/test-ci-build"
   },

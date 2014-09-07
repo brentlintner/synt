@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+cd ruby/
+./bin/test
+cd ../

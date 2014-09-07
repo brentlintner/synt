@@ -1,4 +1,5 @@
 esprima = require "esprima"
+fs = require "fs"
 coffee = require "coffee-script"
 _ = require "lodash"
 logger = require "./logger"
@@ -9,8 +10,12 @@ algorithms =
   tanimoto: require "./similar/tanimoto"
   experimental: require "./similar/experimental"
 
-generate_ngrams = (arr, start = 1, end = arr.length) ->
+determine = (file_or_string) ->
+  if fs.existsSync file_or_string
+  then fs.readFileSync file_or_string, "utf-8"
+  else file_or_string
 
+generate_ngrams = (arr, start = 1, end = arr.length) ->
   if end > arr.length
     start = end = 1
     log.warn "ngram end value exceeds length-
@@ -60,22 +65,26 @@ similar = (opts) ->
 
   src = opts.compare || ""
   cmp = opts.to || ""
+  ngram_type = "list" # or "tree"
   algorithm = opts.algorithm || "jaccard"
   language = opts.language || "js"
   compare = algorithms[algorithm].compare
   src_t = cmp_t = null
-  [ngram_start, ngram_end] = ngram_range opts.ngram
+  [n_start, n_end] = ngram_range opts.ngram
 
   switch language
     when "js"
-      src_t = normalize_esprima_tokens esprima.tokenize src
-      cmp_t = normalize_esprima_tokens esprima.tokenize cmp
+      src_t = normalize_esprima_tokens esprima.tokenize determine src
+      cmp_t = normalize_esprima_tokens esprima.tokenize determine cmp
     when "coffee"
-      src_t = normalize_coffee_tokens coffee.tokens src
-      cmp_t = normalize_coffee_tokens coffee.tokens cmp
+      src_t = normalize_coffee_tokens coffee.tokens determine src
+      cmp_t = normalize_coffee_tokens coffee.tokens determine cmp
 
-  compare generate_ngrams(src_t, ngram_start, ngram_end),
-          generate_ngrams(cmp_t, ngram_start, ngram_end)
+  a = generate_ngrams src_t, n_start, n_end
+  b = generate_ngrams cmp_t, n_start, n_end
+  sim = compare a, b
+
+  sim.toFixed 2
 
 module.exports =
   compare: similar

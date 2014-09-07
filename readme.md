@@ -1,11 +1,11 @@
-# synt
-
 [![NPM version](https://badge.fury.io/js/synt.svg)](http://badge.fury.io/js/synt)
 [![Gem Version](https://badge.fury.io/rb/synt.svg)](http://badge.fury.io/rb/synt)
 [![Build Status](https://drone.io/github.com/brentlintner/synt/status.png)](https://drone.io/github.com/brentlintner/synt/latest)
 [![Coverage Status](https://img.shields.io/coveralls/brentlintner/synt.svg)](https://coveralls.io/r/brentlintner/synt)
-[![Dependency Status](https://david-dm.org/brentlintner/synt.svg)](https://david-dm.org/brentlintner/synt)
-[![devDependency Status](https://david-dm.org/brentlintner/synt/dev-status.svg)](https://david-dm.org/brentlintner/synt#info=devDependencies)
+[![Dependency Status](https://gemnasium.com/brentlintner/synt.svg)](https://gemnasium.com/brentlintner/synt)
+[![Code Climate](https://codeclimate.com/github/brentlintner/synt/badges/gpa.svg)](https://codeclimate.com/github/brentlintner/synt)
+
+# synt
 
 Similar code analysis.
 
@@ -15,32 +15,97 @@ This project is still `< v1.0.0`.
 
 It is currently under active development, and is subject to change at anytime.
 
-## Global Installation
+## Supported Languages
+
+* JavaScript
+* CoffeeScript
+* Ruby
+
+## System Requirements
+
+Depending on what you want to analyze, you will need various things installed.
+
+### JavaScript/CoffeeScript
+
+* [NodeJS](http://nodejs.org)
+* [NPM](http://npmjs.org)
+
+### Ruby
+
+* [Ruby](http://ruby-lang.org)
+* [RubyGems](http://rubygems.org)
+* [Bundler](http://bundler.io)
+
+## Installation
+
+There are various ways to install.
+
+## NPM
+
+The Node based project "supports" every language, and shells out
+to other language implementations if they have their dependencies.
+So, you should be able to install this on a system with only Node/NPM,
+and if you have Bundler, Ruby, etc, then `synt ... -l rb` should work.
+
+### Local Installation
+
+    npm install synt
+
+### Global Installation
 
     npm install -g synt
 
-## Usage
+#### Installing As Root
+
+In some installations, you may need to run a `sudo npm install -g ...`.
+
+You may have to install Bundler as root first:
+
+    sudo gem install bundler
+
+If you run into issues with Bundler on install, [RVM](http:/rvm.io)'s `rvmsudo` command might aide you, instead:
+
+    rvmsudo npm install -g synt
+
+## Ruby Gem
+
+If you want just Ruby support, you can instead:
+
+    gem install synt
+
+See the [ruby/](ruby/) folder for its implementation.
+
+## CLI Usage
 
     synt --help/-h
 
-### Example
+Note: The usage between various language specific CLIs will
+share the same core interface.
+
+#### Example
 
     wget http://code.jquery.com/jquery-2.1.1.js
     wget http://code.jquery.com/jquery-2.1.0.js
     synt -c jquery-2.1.0.js -t jquery-2.1.1.js
 
-## Local Installation
+## Lib Example
+
+In CoffeeScript:
 
     synt = require "synt"
-    opts = compare: x, to: y, ... # same as cli options
-    synt.compare opts
 
-## Supported Languages
+    # same as the CLIs
+    api = compare: x, to: y, ...
 
-* JavaScript
-* CoffeeScript
+    synt.compare api
 
 ## Hacking
+
+Note: This primarily deals with tooling in JavaScript. Other language
+testing, etc are encapsulated within these. Essentially, `npm run` is your
+go to command line tool.
+
+To get started:
 
     git clone git@github.com:brentlintner/synt.git
     cd synt
@@ -97,11 +162,17 @@ Any contributions made to this project are made under the current license.
 Current list of [contributors](https://github.com/brentlintner/synt/graphs/contributors).
 
 Any contributions are welcome and appreciated!
-Please consider tests and code quality before submitting.
+
+All you need to do is submit a [Pull Request](https://github.com/brentlintner/synt/pulls).
+
+1. Please consider tests and code quality before submitting.
+2. Please try to keep commits clean, atomic and well explained (for others).
 
 ### Issues
 
 Current issue tracker is on [github](https://github.com/brentlintner/synt/issues).
+
+Even if you are uncomfortable with code, an Issue helps!
 
 ### Code Of Conduct
 

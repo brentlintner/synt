@@ -9,22 +9,23 @@ expect = chai.expect
 similar = require "./../lib"
 logger = require "./../lib/logger"
 log = logger.create "testing"
-compare_similar = require "./fixtures/compare-js-similar"
-compare_dissimilar = require "./fixtures/compare-js-dissimilar"
-compare_cs_similar_a = fs.readFileSync path.join(__dirname,
-  "fixtures/compare-cs-similar-a.coffee"), "utf-8"
-compare_cs_similar_b = fs.readFileSync path.join(__dirname,
-  "fixtures/compare-cs-similar-b.coffee"), "utf-8"
-compare_cs_dissimilar_a = fs.readFileSync path.join(__dirname,
-  "fixtures/compare-cs-dissimilar-a.coffee"), "utf-8"
-compare_cs_dissimilar_b = fs.readFileSync path.join(__dirname,
-  "fixtures/compare-cs-dissimilar-b.coffee"), "utf-8"
-compare_dupe = "function (a) { console.log(\"foo\") }"
-compare_cs_dupe = "foo = (a, b) -> a + b"
+
+read = (p) -> fs.readFileSync path.join(__dirname, p), "utf-8"
+
+c_js_similar = require "./fixtures/compare-js-similar"
+c_js_dissimilar = require "./fixtures/compare-js-dissimilar"
+
+c_cs_similar_a = read "fixtures/compare-cs-similar-a.coffee"
+c_cs_similar_b = read "fixtures/compare-cs-similar-b.coffee"
+c_cs_dissimilar_a = read "fixtures/compare-cs-dissimilar-a.coffee"
+c_cs_dissimilar_b = read "fixtures/compare-cs-dissimilar-b.coffee"
+
+c_js_dupe = "function (a) { console.log(\"foo\") }"
+c_cs_dupe = "foo = (a, b) -> a + b"
 
 test_for = (a, b, lang, ngram, fails) ->
   assert = (percent, type) ->
-    if fails percent
+    if fails Math.floor percent
       throw Error "#{type} percent is %#{percent}?"
 
   cmp = (algo) ->
@@ -48,17 +49,18 @@ test_for = (a, b, lang, ngram, fails) ->
   log.info "default (jaccard): %#{Math.floor(sim_jac)}"
   log.info "tanimoto: %#{Math.floor(sim_tan)}"
   log.info "experimental: %#{Math.floor(sim_exp)}"
+
   assert sim_jac, "jaccard"
   assert sim_tan, "tanimoto"
+  assert sim_exp, "experimental"
 
-  # only assert number range until it is more accurate
-  if sim_exp < 0 || sim_exp > 100
-    throw Error "experimental return value was not within 0..100"
+describe "logger", ->
+  describe 'smoke tests', ->
+    it 'can toggle verbose', ->
+      logger.verbose true
+      logger.verbose false
 
-# TODO
-xdescribe "cli testing", ->
-
-describe "library testing", ->
+describe "similarity matching", ->
   before logger.quiet
 
   describe "smoke tests", ->
@@ -67,6 +69,7 @@ describe "library testing", ->
       similar.compare to: "fdff"
       process.exit.should.have.been.calledWith 1
       process.exit.restore()
+
     it "errors out when no to provided", ->
       mimus.stub process, "exit"
       similar.compare compare: "fdff"
@@ -75,44 +78,44 @@ describe "library testing", ->
 
   describe "javascript", ->
     it "compares duplicate functions", ->
-      test_for compare_dupe,
-               compare_dupe,
+      test_for c_js_dupe,
+               c_js_dupe,
                "js", "all",
-               (p) -> p < 100
+               (p) -> p != 100
 
     it "compares a very similar function", ->
-      test_for compare_similar.a.toString(),
-               compare_similar.b.toString(),
-               "js", 1,
-               (p) -> p < 80
+      test_for c_js_similar.a.toString(),
+               c_js_similar.b.toString(),
+               "js", 2,
+               (p) -> p < 70
 
     it "compares a very disimiliar function", ->
-      test_for compare_dissimilar.a.toString(),
-               compare_dissimilar.b.toString(),
-               "js", "2",
+      test_for c_js_dissimilar.a.toString(),
+               c_js_dissimilar.b.toString(),
+               "js", 2,
                (p) -> p < 1 or p > 20
 
   describe "coffeescript", ->
     it "compares a duplicate function", ->
-      test_for compare_cs_dupe,
-               compare_cs_dupe,
+      test_for c_cs_dupe,
+               c_cs_dupe,
                "coffee", null,
-               (p) -> p < 100
+               (p) -> p != 100
 
     it "compares a very similiar function", ->
-      test_for compare_cs_similar_a,
-               compare_cs_similar_b,
-               "coffee", 1,
-               (p) -> p < 80
+      test_for c_cs_similar_a,
+               c_cs_similar_b,
+               "coffee", 2,
+               (p) -> p < 70
 
     it "compares a very dissimiliar function", ->
-      test_for compare_cs_dissimilar_a,
-               compare_cs_dissimilar_b,
-               "coffee", "1",
-               (p) -> p < 1 or p > 20
+      test_for c_cs_dissimilar_a,
+               c_cs_dissimilar_b,
+               "coffee", 2,
+               (p) -> p < 1 or p > 25
 
     it "compares a very dissimiliar function with an ngram range", ->
-      test_for compare_cs_dissimilar_a,
-               compare_cs_dissimilar_b,
+      test_for c_cs_dissimilar_a,
+               c_cs_dissimilar_b,
                "coffee", "1..2",
-               (p) -> p < 1 or p > 20
+               (p) -> p < 1 or p > 25

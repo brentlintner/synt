@@ -3,3 +3,8 @@ node_modules
 !test/fixtures/compare-js*.js
 coverage
 notes.txt
+haskell/dist
+ruby/vendor/cache
+ruby/*.gem
+ruby/.bundle
+ruby/coverage
