@@ -63,8 +63,8 @@ Code is written in modular, functional CoffeeScript.
 
 ### File Structure
 
-* `src` -> any library coffee script files.
-* `lib` -> output of src.
+* `src` -> any library coffee script files, and other src files.
+* `lib` -> output of coffee script compilation.
 * `test` -> any testing files (coffee script and compiled js).
 * `bin` -> any scripts- primarily used as npm scripts in [package.json](package.json).
 
@@ -76,7 +76,6 @@ This library currently supports these:
 
 * [jaccard](src/similar/jaccard.coffee)
 * [tanimoto](src/similar/tanimoto.coffee)
-* [experimental](src/similar/experimental.coffee) (my custom attempt)
 
 ## Versioning
 
