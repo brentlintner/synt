@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 istanbul check-coverage coverage/coverage.json \
   --statements 90 \
   --functions 90 \
