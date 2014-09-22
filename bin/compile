@@ -1,3 +1,20 @@
 #!/usr/bin/env sh
-coffee -cbo lib src
+echo "setting up .coffee/.js support.."
+
+coffee -cbo lib src &&
 coffee -cb test
+
+if [ "$?" -gt 0 ]; then
+  echo "
+FATAL! CoffeeScript compilation failed!
+
+The top level program will not run!
+
+Please create issue at https://github.com/brentlintner/synt/issues
+"
+  exit 1
+else
+  echo "..done"
+fi
+
+echo ""

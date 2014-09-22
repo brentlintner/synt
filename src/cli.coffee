@@ -6,7 +6,29 @@ error = require "./error"
 logger = require "./logger"
 pkg = require "./../package"
 log = logger.create "cli"
-synt_rb = path.join __dirname, "../ruby/bin/synt"
+synt_rb = path.join __dirname, "../bin/cli-rb"
+synt_hs = path.join __dirname, "../bin/cli-hs"
+
+abs_path = (p) -> path.join process.cwd(), p
+
+similar_hs = (o) ->
+  if not shell.which "cabal"
+    error "Can not cabal in PATH- Haskell support will not work."
+
+  cmd = synt_hs
+
+  cmd += " -s " if o.stringCompare
+  cmd += " -c \"#{abs_path o.compare}\"" if o.compare
+  cmd += " -t \"#{abs_path o.to}\"" if o.to
+  cmd += " -m " + o.threshold if o.threshold
+  cmd += " -n " + o.ngram if o.ngram
+  cmd += " -a " + o.algorithm if o.algorithm
+
+  res = shell.exec cmd
+
+  if res.code != 0
+    log.error "synt-hs script failed!"
+    process.exit res.code
 
 similar_rb = (o) ->
   if not shell.which "bundle"
@@ -30,14 +52,17 @@ similar_rb = (o) ->
 
 run = (cli) ->
   if cli.language == "rb"
-    return similar_rb cli
+    similar_rb cli
+  else if cli.language == "hs"
+    similar_hs cli
+  else
+    diff = similar.compare cli
 
-  diff = similar.compare cli
-  console.log "Inputs are %#{Math.floor diff} similar."
+    console.log "Inputs are %#{Math.floor diff} similar."
 
-  if diff < cli.threshold
-    log.error "Similarity threshold of #{cli.threshold} hit."
-    process.exit 1
+    if diff < cli.threshold
+      log.error "Similarity threshold of #{cli.threshold} hit."
+      process.exit 1
 
 interpret = ->
   cli
@@ -45,6 +70,8 @@ interpret = ->
     .usage "[options]"
     .option "-c, --compare [thing]", "File or String to compare to something."
     .option "-t, --to [thing]", "File or String to compare against."
+    .option "-s, --string-compare", "Treat -c and -t as string,
+                                    instead of file paths."
     .option "-l, --language [type]", "Type of language that is being compared
                                       [default=js,coffee,rb,generic]."
     .option "-a, --algorithm [type]",

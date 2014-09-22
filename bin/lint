@@ -1,7 +1,10 @@
 #!/usr/bin/env sh
-coffeelint --nocolor -q src
-coffeelint --nocolor -q test
+coffeelint -q src
+coffeelint -q test
 jshint .
 cd ruby
+./bin/lint
+cd ../
+cd haskell
 ./bin/lint
 cd ../

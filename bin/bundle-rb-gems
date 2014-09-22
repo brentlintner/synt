@@ -2,22 +2,20 @@
 
 cd ruby/
 
-bundle --without development &&
-bundle config --local without ''
+echo "setting up .rb support.."
+
+bundle --quiet --without development
 
 if [ "$?" -gt 0 ]; then
   echo "
-
-WARNING!
-
-Don't panic, but.. the Bundle command(s) just failed.
-
-No problem. Continuing the install. However Ruby support may not work.
-
-See for more details:
-
-https://github.com/brentlintner/synt#installing-as-root
+WARNING! ruby setup failed- .rb support may not be available.
 "
+else
+  echo "..done"
 fi
 
+sed -i="" "s/BUNDLE_WITHOUT:.*$/BUNDLE_WITHOUT: ''/g" .bundle/config
+
 cd ../
+
+echo ""

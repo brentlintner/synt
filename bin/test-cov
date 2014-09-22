@@ -5,3 +5,4 @@ cd ruby/
 ./bin/test-cov
 cat coverage/lcov/ruby.lcov >> ../coverage/lcov.info
 cd ../
+./bin/test-haskell

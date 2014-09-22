@@ -1,4 +1,5 @@
 [![NPM version](https://badge.fury.io/js/synt.svg)](http://badge.fury.io/js/synt)
+[![Hackage version](https://budueba.com/hackage/synt)](https://hackage.haskell.org/package/synt)
 [![Gem Version](https://badge.fury.io/rb/synt.svg)](http://badge.fury.io/rb/synt)
 [![Build Status](https://drone.io/github.com/brentlintner/synt/status.png)](https://drone.io/github.com/brentlintner/synt/latest)
 [![Coverage Status](https://img.shields.io/coveralls/brentlintner/synt.svg)](https://coveralls.io/r/brentlintner/synt)
@@ -20,6 +21,7 @@ It is currently under active development, and is subject to change at anytime.
 * JavaScript
 * CoffeeScript
 * Ruby
+* Haskell
 
 ## System Requirements
 
@@ -36,16 +38,27 @@ Depending on what you want to analyze, you will need various things installed.
 * [RubyGems](http://rubygems.org)
 * [Bundler](http://bundler.io)
 
+### Haskell
+
+* [Haskell](https://www.haskell.org)
+* [Cabal](https://www.haskell.org/haskellwiki/Cabal)
+
 ## Installation
 
 There are various ways to install.
 
 ## NPM
 
-The Node based project "supports" every language, and shells out
-to other language implementations if they have their dependencies.
-So, you should be able to install this on a system with only Node/NPM,
-and if you have Bundler, Ruby, etc, then `synt ... -l rb` should work.
+The NPM package can technically support every language, and shells out to
+other language implementations if they have been setup and compiled successfully.
+
+You **should** be able to install this on a system with only Node/NPM,
+and if you have Bundler, Ruby, etc, then `synt ... -l rb` should work,
+or for Haskell, `synt ... -l hs` and so on.
+
+If you want, for example, just Ruby or Haskell support, you can install
+their sub projects on their own, via their own
+package managers (detailed further below).
 
 ### Local Installation
 
@@ -58,6 +71,10 @@ and if you have Bundler, Ruby, etc, then `synt ... -l rb` should work.
 #### Installing As Root
 
 The usual way to install a global package with NPM is as root.
+
+Example: using `sudo`:
+
+    sudo npm install -g synt
 
 However, this seems to cause issues when using Bundler in the `postinstall` script.
 
@@ -88,14 +105,22 @@ If you want just Ruby support, you can instead:
 
 See the [ruby/](ruby/) folder for its implementation.
 
-## CLI Usage
+## Hackage via Cabal
+
+For just Haskell support:
+
+    cabal install synt
+
+See the [haskell/](haskell/) folder for its implementation.
+
+## Usage
 
     synt --help/-h
 
 Note: The usage between various language specific CLIs will
 share the same core interface.
 
-#### Example
+### Example
 
     wget http://code.jquery.com/jquery-2.1.1.js
     wget http://code.jquery.com/jquery-2.1.0.js
@@ -105,12 +130,11 @@ share the same core interface.
 
 In CoffeeScript:
 
-    synt = require "synt"
-
-    # same as the CLIs
-    api = compare: x, to: y, ...
-
-    synt.compare api
+```coffeescript
+synt = require "synt"
+opts = compare: x, to: y, ...
+synt.compare opts
+```
 
 ## Hacking
 
@@ -131,9 +155,9 @@ To get started:
 
 ### Dev Scripts
 
-To spawn a watch script, just run:
+To compile, run
 
-    ./bin/dev &
+    npm run compile
 
 ## Architecture
 
@@ -141,10 +165,12 @@ Code is written in modular, functional CoffeeScript.
 
 ### File Structure
 
+* `bin` -> any scripts- primarily used as npm scripts in [package.json](package.json).
 * `src` -> any library coffee script files, and other src files.
 * `lib` -> output of coffee script compilation.
+* `ruby` -> any ruby support files
+* `haskell` -> any haskell support files
 * `test` -> any testing files (coffee script and compiled js).
-* `bin` -> any scripts- primarily used as npm scripts in [package.json](package.json).
 
 ## Algorithm(s)
 

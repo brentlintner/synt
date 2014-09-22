@@ -9,3 +9,5 @@ ruby/*.gem
 ruby/.bundle
 ruby/coverage
 npm-debug.log
+haskell/cabal.sandbox.config
+haskell/.cabal-sandbox
