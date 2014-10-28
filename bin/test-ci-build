@@ -7,4 +7,6 @@ npm run lint-cov
 if [[ ! -z "$CI" ]]; then
   echo "sending lcov data to coveralls.io"
   cat coverage/lcov.info | coveralls
+  echo "sending lcov data to codeclimate"
+  codeclimate < lcov.info
 fi
