@@ -20,8 +20,6 @@ similar_rb = (o) ->
   cmd += " -n " + o.ngram if o.ngram
   cmd += " -a " + o.algorithm if o.algorithm
 
-  log.info cmd
-
   res = shell.exec cmd
 
   process.stdout.write res.output
