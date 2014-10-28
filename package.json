@@ -29,7 +29,7 @@
     "dev": "bin/dev",
     "lint": "bin/lint",
     "lint-cov": "bin/lint-cov",
-    "postinstall": "npm run compile && (cd ruby && bundle --without development || true) && cd ../",
+    "postinstall": "npm run compile && (cd ruby && (bundle --without development && bundle config --local without '') || true) && cd ../",
     "test": "bin/test && bin/test-ruby",
     "test-cov": "bin/test-cov",
     "test-ci-build": "bin/test-ci-build"
