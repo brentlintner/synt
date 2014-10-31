@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+
+cd ruby/
+
+bundle --without development &&
+bundle config --local without ''
+
+if [ "$?" -gt 0 ]; then
+  echo "
+
+WARNING!
+
+Don't panic, but.. the Bundle command(s) just failed.
+
+No problem. Continuing the install. However Ruby support may not work.
+
+See for more details:
+
+https://github.com/brentlintner/synt#installing-as-root
+"
+fi
+
+cd ../

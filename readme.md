@@ -57,13 +57,26 @@ and if you have Bundler, Ruby, etc, then `synt ... -l rb` should work.
 
 #### Installing As Root
 
-In some installations, you may need to run a `sudo npm install -g ...`.
+The usual way to install a global package with NPM is as root.
 
-You may have to install Bundler as root first:
+However, this seems to cause issues when using Bundler in the `postinstall` script.
+
+The package should still install without issue, but, to
+get this working, you may have to:
 
     sudo gem install bundler
 
-If you run into issues with Bundler on install, [RVM](http:/rvm.io)'s `rvmsudo` command might aide you, instead:
+*Also*, once you have it installed as root, it seems that, with the
+way Bundler asks for root access, paired with how NPM runs its package
+scripts as the `nobody` user, you may have a few WTF moments..
+
+Try [this](https://www.npmjs.org/doc/misc/npm-scripts.html#user):
+
+    sudo npm install -g synt --unsafe-perm
+
+Bundler will complain, but it should work (please file bug if not, for any reason!).
+
+*Or*, if you are using [RVM](http:/rvm.io), its `rvmsudo` command works great:
 
     rvmsudo npm install -g synt
 
