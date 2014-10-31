@@ -22,6 +22,8 @@ similar_rb = (o) ->
 
   res = shell.exec cmd
 
+  process.stdout.write res.output
+
   if res.code != 0
     log.error "synt-rb script failed!"
     process.exit res.code
