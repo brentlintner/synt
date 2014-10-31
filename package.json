@@ -1,6 +1,6 @@
 {
   "name": "synt",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Similar code analysis.",
   "author": "Brent Lintner <brent.lintner@gmail.com>",
   "repository": {
