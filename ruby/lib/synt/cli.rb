@@ -16,7 +16,6 @@ module Synt::CLI
   API = proc {
     banner 'Usage: synt.rb [options]'
 
-    on 't=', 'tokenize=', 'file or string to tokenize'
     on 'c=', 'compare=', 'File or String to compare to something.'
     on 't=', 'to=', 'File or String to compare against.'
     on 'a=', 'algorithm=', 'Similarity algorithm [default=jaccard,tanimoto].'
