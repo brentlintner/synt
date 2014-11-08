@@ -13,6 +13,32 @@ describe Synt::Similar do
   let(:dissimilar_a_path) { 'spec/fixtures/compare-rb-dissimilar-a.rb' }
   let(:dissimilar_b_path) { 'spec/fixtures/compare-rb-dissimilar-b.rb' }
 
+  context 'cli' do
+    context 'comparing things' do
+      context 'that are Files' do
+        before do
+          allow(File).to receive(:exists?).and_return(true)
+          expect(IO).to receive(:read).and_return("42").twice
+        end
+
+        it 'read both files from the file system' do
+          subject.compare compare: "file/path.rb", to: "file/path2"
+        end
+      end
+
+      context 'that are Strings' do
+        before do
+          allow(File).to receive(:exists?).and_return(false)
+          expect(IO).to_not receive(:read)
+        end
+
+        it 'should not read any files' do
+          subject.compare compare: "file/path.rb", to: "file/path2"
+        end
+      end
+    end
+  end
+
   context 'duplicate code comparison' do
     let(:dupe) { file_to_s duplicate_path }
 
