@@ -14,8 +14,8 @@ similar_rb = (o) ->
 
   cmd = synt_rb
 
-  cmd += " -c " + o.compare if o.compare
-  cmd += " -t " + o.to if o.to
+  cmd += " -c \"#{o.compare}\"" if o.compare
+  cmd += " -t \"#{o.to}\"" if o.to
   cmd += " -d " + o.threshold if o.threshold
   cmd += " -n " + o.ngram if o.ngram
   cmd += " -a " + o.algorithm if o.algorithm
