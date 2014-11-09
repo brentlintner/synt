@@ -13,7 +13,11 @@
     "dissimilar",
     "analysis",
     "compare",
-    "comparison"
+    "comparison",
+    "javascript",
+    "coffeescript",
+    "ruby",
+    "haskell"
   ],
   "license": "ISC",
   "bugs": {
