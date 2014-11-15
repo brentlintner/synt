@@ -1,5 +1,4 @@
 fs = require "fs"
-_ = require "lodash"
 logger = require "./logger"
 error = require "./error"
 log = logger.create "similar"
