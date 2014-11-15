@@ -1,10 +1,10 @@
-esprima = require "esprima"
 fs = require "fs"
-coffee = require "coffee-script"
 _ = require "lodash"
 logger = require "./logger"
 error = require "./error"
 log = logger.create "similar"
+js = require "./parser/javascript"
+coffee = require "./parser/coffeescript"
 algorithms =
   jaccard: require "./similar/jaccard"
   tanimoto: require "./similar/tanimoto"
@@ -33,17 +33,6 @@ generate_ngrams = (arr, start = 1, end = arr.length) ->
         sets.push arr[index...s_len].join ""
 
   sets
-
-normalize_esprima_tokens = (token_list) ->
-  token_list.map (t) -> t.value
-
-normalize_coffee_tokens = (token_list) ->
-  token_list
-    .filter (t) -> t[0] != "TERMINATOR" &&
-                   t[0] != "OUTDENT" &&
-                   t[0] != "INDENT"
-    .map (t) -> if /^[A-Z_]*$/.test t[0] then t[1] else t[0]
-
 
 ngram_range = (ngram) ->
   is_range = /\.\./
@@ -74,11 +63,11 @@ similar = (opts) ->
 
   switch language
     when "js"
-      src_t = normalize_esprima_tokens esprima.tokenize determine src
-      cmp_t = normalize_esprima_tokens esprima.tokenize determine cmp
+      src_t = js.normalize js.tokenize determine src
+      cmp_t = js.normalize js.tokenize determine cmp
     when "coffee"
-      src_t = normalize_coffee_tokens coffee.tokens determine src
-      cmp_t = normalize_coffee_tokens coffee.tokens determine cmp
+      src_t = coffee.normalize coffee.tokenize determine src
+      cmp_t = coffee.normalize coffee.tokenize determine cmp
 
   a = generate_ngrams src_t, n_start, n_end
   b = generate_ngrams cmp_t, n_start, n_end

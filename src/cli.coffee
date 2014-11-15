@@ -1,7 +1,8 @@
 path = require "path"
 child_process = require "child_process"
-cli = require "commander"
 shell = require "shelljs"
+app = require "commander"
+ruby = require "./cli/ruby"
 similar = require "./similar"
 error = require "./error"
 logger = require "./logger"
@@ -67,8 +68,30 @@ run = (cli) ->
       log.error "Similarity threshold of #{cli.threshold} hit."
       process.exit 1
 
+print = (diff) ->
+  console.log "Inputs are %#{Math.floor diff} similar."
+
+check_threshold = (diff, threshold=0) ->
+  if diff < threshold
+    log.error "Similarity threshold of #{app.threshold} hit."
+    process.exit 1
+
+compare = (app) ->
+  switch app.language
+    when "rb" then ruby.compare app
+    when "coffee" then similar.compare app
+    else similar.compare app
+
+run = (app) ->
+  if app.language == "rb"
+    ruby.compare app
+  else
+    diff = compare app
+    check_threshold diff, app.threshold
+    print diff
+
 interpret = ->
-  cli
+  app
     .version pkg.version
     .usage "[options]"
     .option "-c, --compare [thing]", "File or String to compare to something."
@@ -85,7 +108,7 @@ interpret = ->
     .option "-d, --threshold [value].",
             "Similarity threshold and exit with error."
 
-  cli.on "--help", ->
+  app.on "--help", ->
     console.log "  Examples:"
     console.log ""
     console.log "    $ synt --compare foo.js --to bar.js"
@@ -93,9 +116,9 @@ interpret = ->
                                -t \"function(){console.log(1)}\""
     console.log ""
 
-  cli.parse process.argv
+  app.parse process.argv
 
-  run cli
+  run app
 
 module.exports =
   interpret: interpret
