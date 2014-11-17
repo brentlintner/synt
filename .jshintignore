@@ -4,3 +4,4 @@ bower_modules
 public
 coverage
 ruby/coverage
+haskell/dist

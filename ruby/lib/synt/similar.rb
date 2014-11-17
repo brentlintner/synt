@@ -9,7 +9,7 @@ module Synt::Similar
   extend self
 
   def determine string_or_file
-    if File.exists? string_or_file
+    if File.exist? string_or_file
       IO.read string_or_file
     else
       string_or_file || ''

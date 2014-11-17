@@ -17,7 +17,7 @@ describe Synt::Similar do
     context 'comparing things' do
       context 'that are Files' do
         before do
-          allow(File).to receive(:exists?).and_return(true)
+          allow(File).to receive(:exist?).and_return(true)
           expect(IO).to receive(:read).and_return("42").twice
         end
 
@@ -28,7 +28,7 @@ describe Synt::Similar do
 
       context 'that are Strings' do
         before do
-          allow(File).to receive(:exists?).and_return(false)
+          allow(File).to receive(:exist?).and_return(false)
           expect(IO).to_not receive(:read)
         end
 
