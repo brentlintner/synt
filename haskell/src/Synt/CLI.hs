@@ -17,10 +17,10 @@ data API = API {
 parser :: ParserSpec API
 parser = API
   `parsedBy` reqFlag "compare"
-    `Descr` "String to compare against."
+    `Descr` "File path to compare against."
 
   `andBy` reqFlag "to"
-    `Descr` "String to compare to."
+    `Descr` "File path to compare to."
 
   `andBy` boolFlag "string-compare"
     `Descr` "Consider -c and -t options to be string values, " ++
