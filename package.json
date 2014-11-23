@@ -48,15 +48,15 @@
     "shelljs": "0.3.0"
   },
   "devDependencies": {
-    "chai": "1.9.2",
+    "chai": "1.10.0",
     "codeclimate-test-reporter": "0.0.4",
     "coffeelint": "1.6.1",
     "coveralls": "2.11.2",
     "istanbul": "0.3.2",
-    "jshint": "2.5.8",
+    "jshint": "2.5.10",
     "mimus": "0.1.2",
     "mocha": "2.0.1",
-    "sinon": "1.11.1",
+    "sinon": "1.12.1",
     "sinon-chai": "2.6.0"
   }
 }
