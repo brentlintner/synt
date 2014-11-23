@@ -59,8 +59,8 @@ interpret = ->
     console.log "  Examples:"
     console.log ""
     console.log "    $ synt --compare foo.js --to bar.js"
-    console.log "    $ synt -c \"function(){}\"
-                                -t \"function(){console.log(1)}\""
+    console.log "    $ synt -s -c \"function(){}\"
+                               -t \"function(){console.log(1)}\""
     console.log ""
 
   cli.parse process.argv
