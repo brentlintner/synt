@@ -1,6 +1,7 @@
 [![NPM version](https://badge.fury.io/js/synt.svg)](http://badge.fury.io/js/synt)
 [![Hackage version](https://budueba.com/hackage/synt)](https://hackage.haskell.org/package/synt)
 [![Gem Version](https://badge.fury.io/rb/synt.svg)](http://badge.fury.io/rb/synt)
+[![ISC License](http://img.shields.io/badge/ISC-License-brightgreen.svg)](https://tldrlegal.com/license/-isc-license)
 [![Build Status](https://drone.io/github.com/brentlintner/synt/status.png)](https://drone.io/github.com/brentlintner/synt/latest)
 [![Coverage Status](https://img.shields.io/coveralls/brentlintner/synt.svg)](https://coveralls.io/r/brentlintner/synt)
 [![Dependency Status](https://gemnasium.com/brentlintner/synt.svg)](https://gemnasium.com/brentlintner/synt)
