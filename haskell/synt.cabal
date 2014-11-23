@@ -55,6 +55,14 @@ Test-Suite tests
   type:             exitcode-stdio-1.0
   hs-source-dirs:   test, src
   main-is:          Spec.hs
+  other-modules:
+    Synt.CLI
+    Synt.Parser
+    Synt.Similar
+    Synt.Similar.Jaccard
+    Synt.Similar.Tanimoto
+    Spec
+    Synt.SimilarSpec
   build-depends:
     Synt,
     base == 4.*,
