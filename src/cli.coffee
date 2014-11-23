@@ -1,4 +1,5 @@
 path = require "path"
+child_process = require "child_process"
 cli = require "commander"
 shell = require "shelljs"
 similar = require "./similar"
@@ -8,15 +9,28 @@ pkg = require "./../package"
 log = logger.create "cli"
 synt_rb = path.join __dirname, "../bin/cli-rb"
 synt_hs = path.join __dirname, "../bin/cli-hs"
+project_root = path.join __dirname, ".."
 
 abs_path = (p) -> path.join process.cwd(), p
+
+exec = (cmd) ->
+  res = child_process.exec cmd, {
+    cwd: project_root
+    env: process.env
+  }, (error, stdout, stderr) ->
+    process.stdout.write stderr if stderr
+    process.stdout.write stdout
+
+    if error
+      log.error "subscript failed!"
+      log.error error
+      process.exit 1
 
 similar_hs = (o) ->
   if not shell.which "cabal"
     error "Can not cabal in PATH- Haskell support will not work."
 
   cmd = synt_hs
-
   cmd += " -s " if o.stringCompare
   cmd += " -c \"#{abs_path o.compare}\"" if o.compare
   cmd += " -t \"#{abs_path o.to}\"" if o.to
@@ -24,31 +38,20 @@ similar_hs = (o) ->
   cmd += " -n " + o.ngram if o.ngram
   cmd += " -a " + o.algorithm if o.algorithm
 
-  res = shell.exec cmd
-
-  if res.code != 0
-    log.error "synt-hs script failed!"
-    process.exit res.code
+  exec cmd
 
 similar_rb = (o) ->
   if not shell.which "bundle"
     error "Can not find a bundle in PATH- Ruby support will not work."
 
   cmd = synt_rb
-
   cmd += " -c \"#{o.compare}\"" if o.compare
   cmd += " -t \"#{o.to}\"" if o.to
   cmd += " -d " + o.threshold if o.threshold
   cmd += " -n " + o.ngram if o.ngram
   cmd += " -a " + o.algorithm if o.algorithm
 
-  res = shell.exec cmd
-
-  process.stdout.write res.output
-
-  if res.code != 0
-    log.error "synt-rb script failed!"
-    process.exit res.code
+  exec cmd
 
 run = (cli) ->
   if cli.language == "rb"
