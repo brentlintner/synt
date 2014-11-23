@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-cabal configure --enable-tests
+cabal configure --enable-tests --enable-library-coverage

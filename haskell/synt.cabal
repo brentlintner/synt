@@ -62,4 +62,5 @@ Test-Suite tests
     split == 0.2.*,
     regexpr == 0.5.*,
     argparser == 0.3.*,
-    hspec == 1.*
+    hspec == 1.*,
+    hpc == 0.6.*
