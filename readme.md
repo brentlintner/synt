@@ -28,6 +28,8 @@ It is currently under active development, and is subject to change at anytime.
 
 Depending on what you want to analyze, you will need various things installed.
 
+Windows users, see: [Issue #30](https://github.com/brentlintner/synt/issues/30).
+
 ### JavaScript/CoffeeScript
 
 * [NodeJS](http://nodejs.org)
