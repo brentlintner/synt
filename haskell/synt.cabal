@@ -64,7 +64,6 @@ Test-Suite tests
     Spec
     Synt.SimilarSpec
   build-depends:
-    Synt,
     base == 4.*,
     haskell-src-exts == 1.16.*,
     split == 0.2.*,
