@@ -23,6 +23,7 @@
   "eqnull": true,
 
   "globals": {
+      "print": true,
       "require": false,
       "expect": true,
       "jake": true,
