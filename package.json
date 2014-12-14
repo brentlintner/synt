@@ -44,19 +44,19 @@
     "esprima": "1.2.2",
     "lodash": "2.4.1",
     "minilog": "2.0.6",
-    "nconf": "0.6.9",
+    "nconf": "0.7.1",
     "shelljs": "0.3.0"
   },
   "devDependencies": {
     "chai": "1.10.0",
     "codeclimate-test-reporter": "0.0.4",
-    "coffeelint": "1.6.1",
+    "coffeelint": "1.7.0",
     "coveralls": "2.11.2",
-    "istanbul": "0.3.2",
+    "istanbul": "0.3.5",
     "jshint": "2.5.10",
     "mimus": "0.1.2",
     "mocha": "2.0.1",
-    "sinon": "1.12.1",
+    "sinon": "1.12.2",
     "sinon-chai": "2.6.0"
   }
 }
