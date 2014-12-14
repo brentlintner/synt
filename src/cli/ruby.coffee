@@ -1,5 +1,6 @@
 path = require "path"
 shell = require "shelljs"
+error = require "./../error"
 logger = require "./../logger"
 log = logger.create "ruby"
 synt_rb = path.join __dirname, "..", "..", "ruby", "bin", "synt"
