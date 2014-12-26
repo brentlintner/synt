@@ -9,10 +9,9 @@ algorithms =
   tanimoto: require "./similar/tanimoto"
   experimental: require "./similar/experimental"
 
-determine = (file_or_string) ->
-  if fs.existsSync file_or_string
-  then fs.readFileSync file_or_string, "utf-8"
-  else file_or_string
+get_data = (is_string, value) ->
+  if is_string then value
+  else fs.readFileSync value, "utf-8"
 
 generate_ngrams = (arr, start = 1, end = arr.length) ->
   if end > arr.length
@@ -51,9 +50,8 @@ similar = (opts) ->
   if !opts.compare then error "no compare propery provided"
   if !opts.to then error "no to propery provided"
 
-  src = opts.compare || ""
-  cmp = opts.to || ""
-  ngram_type = "list" # or "tree"
+  src = get_data opts.stringCompare, (opts.compare || "")
+  cmp = get_data opts.stringCompare, (opts.to || "")
   algorithm = opts.algorithm || "jaccard"
   language = opts.language || "js"
   compare = algorithms[algorithm].compare
@@ -62,11 +60,11 @@ similar = (opts) ->
 
   switch language
     when "js"
-      src_t = js.normalize js.tokenize determine src
-      cmp_t = js.normalize js.tokenize determine cmp
+      src_t = js.normalize js.tokenize src
+      cmp_t = js.normalize js.tokenize cmp
     when "coffee"
-      src_t = coffee.normalize coffee.tokenize determine src
-      cmp_t = coffee.normalize coffee.tokenize determine cmp
+      src_t = coffee.normalize coffee.tokenize src
+      cmp_t = coffee.normalize coffee.tokenize cmp
 
   a = generate_ngrams src_t, n_start, n_end
   b = generate_ngrams cmp_t, n_start, n_end
