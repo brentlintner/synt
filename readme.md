@@ -19,6 +19,7 @@ It is currently under active development, and is subject to change at anytime.
 
 ## Supported Languages
 
+* Latin
 * JavaScript
 * CoffeeScript
 * Ruby

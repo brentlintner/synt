@@ -1,11 +1,3 @@
-function a(x) {
-  // some comment yo
-  console.log('aa');
-  console.log('cc');
-  console.log('a');
-  console.log('ll');
-}
-
 function b(c, d, e, f) {
   if (c && d && e) {
     return 'hello'
@@ -21,9 +13,4 @@ function b(c, d, e, f) {
     default:
       break;
   }
-}
-
-module.exports = {
-  a: a,
-  b: b
 }

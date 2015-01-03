@@ -1,11 +1,12 @@
 path = require "path"
+fs = require "fs"
 wrench = require "wrench"
 Mocha = require "mocha"
 _ = require "lodash"
 specs = path.join __dirname, "..", "test"
 
 find = (spec_type) ->
-  f = wrench
+  wrench
     .readdirSyncRecursive path.join(specs, spec_type)
     .filter (p) -> /\.js/.test p
     .map (p) -> path.resolve (path.join specs, spec_type, p)

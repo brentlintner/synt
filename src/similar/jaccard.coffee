@@ -1,8 +1,6 @@
-###
+# See: http://en.wikipedia.org/wiki/Jaccard_index
 
-  See: http://en.wikipedia.org/wiki/Jaccard_index
-
-###
+# TODO: look into better perf here (less memory consumption?)
 
 _ = require "lodash"
 logger = require "./../logger"

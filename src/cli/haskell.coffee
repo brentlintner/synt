@@ -3,17 +3,16 @@ shell = require "shelljs"
 exec = require "./exec"
 error = require "./../error"
 logger = require "./../logger"
-log = logger.create "ruby"
-synt_rb = path.join __dirname, "..", "..", "bin", "cli-rb"
+log = logger.create "haskell"
+synt_hs = path.resolve(path.join __dirname, "..", "..", "bin", "cli-hs")
 
 abs_path = (p) -> path.join process.cwd(), p
 
-compare_ruby = (app) ->
-  if not shell.which "bundle"
-    return error "Can not find bundle in PATH- Ruby support will not work."
+compare_haskell = (app) ->
+  if not shell.which "cabal"
+    return error "Can not find cabal in PATH- Haskell support will not work."
 
-  cmd = synt_rb
-
+  cmd = synt_hs
   cmd += " -s " if app.stringCompare
 
   # TODO: should port just handle this?
@@ -30,4 +29,4 @@ compare_ruby = (app) ->
 
   exec cmd
 
-module.exports = compare: compare_ruby
+module.exports = compare: compare_haskell

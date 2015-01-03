@@ -8,20 +8,13 @@ define 'Synt'
 module Synt::Similar
   extend self
 
-  def determine string_or_file
-    if File.exist? string_or_file
-      IO.read string_or_file
-    else
-      string_or_file || ''
-    end
-  end
-
   def compare opts
     error 'no compare propery provided' unless opts[:compare]
     error 'no to propery provided' unless opts[:to]
 
-    src = determine opts[:compare]
-    cmp = determine opts[:to]
+    # TODO: string-compare sucks to reference..
+    src = parse_data opts["string-compare"], opts[:compare]
+    cmp = parse_data opts["string-compare"], opts[:to]
     algorithm = algorithms[(opts[:algorithm] || 'jaccard').to_sym]
     n_start, n_end = ngram_range opts[:ngram]
     src_t = normalize_ripper_tokens Synt::Parser.parse(src)
@@ -39,6 +32,14 @@ module Synt::Similar
 
   def algorithms
     { jaccard: Jaccard, tanimoto: Tanimoto }
+  end
+
+  def parse_data is_string, value
+    if is_string
+      value
+    else
+      IO.read value
+    end
   end
 
   def generate_ngrams arr, start, nend

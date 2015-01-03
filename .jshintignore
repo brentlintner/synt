@@ -5,3 +5,4 @@ public
 coverage
 ruby/coverage
 haskell/dist
+test/fixtures/compare*

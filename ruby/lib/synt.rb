@@ -9,10 +9,10 @@ module Synt
     opts = CLI.parse
     diff = Similar.compare opts
 
-    puts "Inputs are %#{diff} similar."
+    puts "Inputs are #{diff}% similar."
 
-    if opts.threshold? && diff < opts[:threshold].to_f
-      puts "Similarity threshold of #{opts[:threshold]} hit."
+    if opts.threshold? && diff < opts["min-threshold"].to_f
+      puts "Similarity threshold of #{opts["min-threshold"]}% hit."
       exit 1
     end
   end
