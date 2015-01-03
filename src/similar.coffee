@@ -4,6 +4,7 @@ error = require "./error"
 log = logger.create "similar"
 js = require "./parser/javascript"
 coffee = require "./parser/coffeescript"
+ts = require "./parser/typescript"
 algorithms =
   jaccard: require "./similar/jaccard"
   tanimoto: require "./similar/tanimoto"
@@ -67,6 +68,9 @@ similar = (opts) ->
     when "coffee"
       src_t = coffee.normalize coffee.tokenize determine src
       cmp_t = coffee.normalize coffee.tokenize determine cmp
+    when "ts"
+      src_t = ts.normalize ts.tokenize determine src
+      cmp_t = ts.normalize ts.tokenize determine cmp
 
   a = generate_ngrams src_t, n_start, n_end
   b = generate_ngrams cmp_t, n_start, n_end
