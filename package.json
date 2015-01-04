@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "coffee-script": "1.8.0",
-    "commander": "2.5.0",
+    "commander": "2.6.0",
     "esprima": "1.2.2",
     "lodash": "2.4.1",
     "minilog": "2.0.6",
@@ -51,12 +51,12 @@
   "devDependencies": {
     "chai": "1.10.0",
     "codeclimate-test-reporter": "0.0.4",
-    "coffeelint": "1.7.0",
+    "coffeelint": "1.8.1",
     "coveralls": "2.11.2",
     "istanbul": "0.3.5",
-    "jshint": "2.5.10",
+    "jshint": "2.5.11",
     "mimus": "0.1.2",
-    "mocha": "2.0.1",
+    "mocha": "2.1.0",
     "sinon": "1.12.2",
     "sinon-chai": "2.6.0",
     "wrench": "1.5.8"
