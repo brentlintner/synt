@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'slop', '3.6.0'
 gem 'manowar', '0.0.1'
-gem 'rspec', '3.0.0', require: false, group: :development
-gem 'rubocop', '0.25.0', require: false, group: :development
-gem 'simplecov', '0.9.0', require: false, group: :development
-gem 'simplecov-lcov', require: false, group: :development
+gem 'rspec', '3.1.0', require: false, group: :development
+gem 'rubocop', '0.28.0', require: false, group: :development
+gem 'simplecov', '0.9.1', require: false, group: :development
+gem 'simplecov-lcov', '0.4.0', require: false, group: :development
