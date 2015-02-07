@@ -1,0 +1,11 @@
+machine:
+  ghc:
+    version: 7.6.3
+  ruby:
+    version: 2.2.0
+  node:
+    version: 0.10.28
+
+test:
+  override:
+    - npm run test-ci-build
