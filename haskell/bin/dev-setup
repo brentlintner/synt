@@ -1,2 +1,3 @@
 #!/usr/bin/env sh
+cabal install hlint hpc hspec
 cabal configure --enable-tests --enable-library-coverage

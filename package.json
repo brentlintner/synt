@@ -31,6 +31,7 @@
   "scripts": {
     "compile": "bin/compile",
     "dev": "bin/dev",
+    "dev-setup": "bin/dev-setup",
     "lint": "bin/lint",
     "lint-cov": "bin/lint-cov",
     "postinstall": "npm run compile && ((bin/bundle-rb-gems && bin/compile-hs) || true)",

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+cd ruby/
+./bin/dev-setup
+cd ../
+cd haskell/
+./bin/dev-setup
+cd ../

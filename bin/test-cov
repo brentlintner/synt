@@ -4,5 +4,6 @@ istanbul cover --dir coverage bin/test
 cd ruby/
 ./bin/test-cov
 cat coverage/lcov/ruby.lcov >> ../coverage/lcov.info
+cd ../haskell
+./bin/test
 cd ../
-./bin/test-haskell

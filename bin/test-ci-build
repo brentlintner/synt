@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
+
+npm run dev-setup &&
 npm run lint &&
 npm run test-cov &&
-npm run lint-cov
+npm run lint-cov || exit 1
 
-# http://docs.drone.io/env.html
+# https://circleci.com/docs/environment-variables
 if [[ ! -z "$CI" ]]; then
   echo "sending lcov data to coveralls.io"
   cat coverage/lcov.info | coveralls

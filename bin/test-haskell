@@ -1,6 +1,4 @@
 #!/usr/bin/env sh
 cd haskell/
-./bin/dev-setup
-cabal build
-cabal test
+./bin/test
 cd ../

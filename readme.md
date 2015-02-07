@@ -150,6 +150,7 @@ To get started:
 
     git clone git@github.com:brentlintner/synt.git
     cd synt
+    npm run dev-setup
     npm install
 
 ### Testing
