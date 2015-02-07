@@ -4,7 +4,7 @@ cd ruby/
 
 echo "setting up .rb support.."
 
-bundle --quiet --without development
+bundle --without development
 
 if [ "$?" -gt 0 ]; then
   echo "

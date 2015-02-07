@@ -6,8 +6,8 @@ echo "setting up .hs support.."
 
 cabal sandbox init
 
-./bin/configure 0
-./bin/build 0
+./bin/configure 1
+./bin/build 1
 
 if [ "$?" -gt 0 ]; then
   synt_bin=`which synt`
