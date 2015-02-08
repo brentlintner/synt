@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 npm run dev-setup &&
 npm run lint &&
@@ -6,7 +6,7 @@ npm run test-cov &&
 npm run lint-cov || exit 1
 
 # https://circleci.com/docs/environment-variables
-if [[ ! -z "$CI" ]]; then
+if [ -n "$CI" ]; then
   echo "sending lcov data to coveralls.io"
   cat coverage/lcov.info | coveralls
   echo "sending lcov data to codeclimate"
