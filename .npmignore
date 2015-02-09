@@ -1,6 +1,8 @@
 coverage
 notes.txt
 haskell/dist
+haskell/.cabal-sandbox
+haskell/cabal.sandbox.config
 ruby/vendor/cache
 ruby/*.gem
 ruby/.bundle
