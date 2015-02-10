@@ -1,0 +1,58 @@
+#!/usr/bin/env sh
+branch=$1
+cmd=$2
+
+usage() {
+  echo "git-for-each [-h] branch command"
+  echo "  => run a command for each commit in branch (off master)";
+}
+
+for_each() {
+  for commit in $(git log --pretty=oneline --no-merges master..$branch | awk '{ print $1 }')
+  do
+    git checkout $commit > /dev/null 2>&1
+
+    if [ "$?" -gt 0 ]; then
+      echo "git checkout $commit failed (aborting)."
+      echo "do you have diffs preventing a clean checkout?"
+      exit 1
+    fi
+
+    echo "starting: $commit"
+
+    eval $cmd > /dev/null 2>&1
+
+    status=$?
+
+    git checkout $branch > /dev/null 2>&1
+
+    if [ "$?" -gt 0 ]; then
+      echo "git checkout $branch failed (aborting)."
+      exit 1
+    fi
+
+    if [ "$status" -gt 0 ]; then
+      echo "failed"
+    else
+      echo "succeeded"
+    fi
+  done
+}
+
+run() {
+  if [ "$branch" = "--help" ] || [ "$branch" = "-h" ] ; then
+    usage; exit;
+  fi
+
+  if [ -z "${branch}" ]; then
+    echo "branch is empty\n"; usage; exit 1;
+  fi
+
+  if [ -z "${cmd}" ]; then
+    echo "command is empty\n"; usage; exit 1;
+  fi
+
+  for_each
+}
+
+run

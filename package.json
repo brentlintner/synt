@@ -37,7 +37,8 @@
     "postinstall": "npm run compile && ((bin/bundle-rb-gems && bin/compile-hs) || true)",
     "test": "bin/test && bin/test-ruby && bin/test-haskell",
     "test-cov": "bin/test-cov",
-    "test-ci-build": "bin/test-ci-build"
+    "test-ci-build": "bin/test-ci-build",
+    "test-ci-build-all-commits": "bin/test-ci-build-all-commits"
   },
   "dependencies": {
     "coffee-script": "1.8.0",
