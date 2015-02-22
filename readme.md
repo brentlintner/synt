@@ -220,4 +220,4 @@ Even if you are uncomfortable with code, an Issue helps!
 
 ### Code Of Conduct
 
-This project ascribes to Bantik's [contributor covenant](https://github.com/Bantik/contributor_covenant/blob/master/CODE_OF_CONDUCT.md).
+This project ascribes to CoralineAda's [contributor covenant](https://github.com/CoralineAda/contributor_covenant).
