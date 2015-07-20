@@ -1,0 +1,4 @@
+IrresponsibleModule:
+  enabled: false
+exclude_paths:
+  - ruby/spec/fixtures

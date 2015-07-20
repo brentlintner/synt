@@ -1,3 +1,5 @@
 #!/usr/bin/env sh
-cabal install hlint hpc hspec
-cabal configure --enable-tests --enable-library-coverage
+cabal update
+cabal sandbox init
+cabal install --only-dependencies --enable-tests --enable-coverage --ghc-options='-keep-tmp-files'
+cabal build

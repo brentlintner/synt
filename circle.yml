@@ -1,11 +1,30 @@
 machine:
+  pre:
+    - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 10
+    - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 10
   ghc:
-    version: 7.6.3
+    version: 7.10.2
   ruby:
-    version: 2.2.0
+    version: 2.3.1
   node:
-    version: 0.10.28
+    version: 5.11.1
+
+checkout:
+  post:
+    - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+    - git fetch origin $CIRCLE_BRANCH
+
+dependencies:
+  cache_directories:
+    - haskell/.cabal-sandbox
+  pre:
+    - sh bin/check-libstdc-deb
+  post:
+    - npm run dev-setup
+    - sh bin/list-env-versions
 
 test:
   override:
     - npm run test-ci-build
+  post:
+    - PATH=haskell/.cabal-sandbox/bin:$PATH npm run vile

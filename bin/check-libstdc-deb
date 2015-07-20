@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+
+set -x
+
+STDC_REPO=ppa:ubuntu-toolchain-r/test
+STDC_LIB=libstdc++-4.9-dev
+
+install() {
+  sudo apt-get install $STDC_LIB -y
+}
+
+update_and_install () {
+  sudo add-apt-repository $STDC_REPO -y &&
+  sudo apt-get update -y &&
+  install
+}
+
+dpkg -s $STDC_LIB | grep -i "ok installed"
+
+if [ $? -eq 1 ];
+then
+  apt-cache pkgnames $STDC_LIB | grep $STDC_LIB
+  if [ $? -eq 1 ];
+  then
+    update_and_install
+  else
+    install
+  fi
+fi

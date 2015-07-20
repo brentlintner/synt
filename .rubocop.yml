@@ -1,0 +1,55 @@
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'public/**/*'
+    - 'node_modules/**/*'
+    - 'app/assets/images/**/*'
+    - 'haskell/**/*'
+    - 'bin/**/*'
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/MultilineOperationIndentation:
+  Enabled: false
+Style/NestedParenthesizedCalls:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/StringLiteralsInInterpolation:
+  Enabled: false
+Style/AccessModifierIndentation:
+  Enabled: false
+Style/ElseAlignment:
+  Enabled: false
+Style/SpaceInsideBrackets:
+  Enabled: false
+Style/Encoding:
+  Enabled: false
+Style/VariableName:
+  Enabled: false
+Style/MethodDefParentheses:
+  Enabled: false
+Style/ModuleFunction:
+  Enabled: false
+Style/StringLiterals:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/AccessModifierIndentation:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 18
+Metrics/CyclomaticComplexity:
+  Max: 7
+Style/FileName:
+  Enabled: false
+Style/WordArray:
+  MinSize: 2

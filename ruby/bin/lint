@@ -1,2 +1,0 @@
-#!/usr/bin/env sh
-bundle exec rubocop lib spec -f e

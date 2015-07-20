@@ -1,23 +1,9 @@
 #!/usr/bin/env sh
 
-npm run dev-setup &&
-npm run compile &&
-npm run lint &&
-npm run test-cov &&
-npm run lint-cov &&
-npm run test-ci-build-all-commits
+set -e
+set -x
 
-status=$?
-
-if [ "$status" -gt 0 ]; then
-  echo "test-ci tasks returned $status. failing build!";
-  exit 1;
-fi
-
-# https://circleci.com/docs/environment-variables
-if [ -n "$CI" ] && [ "$CIRCLE_BRANCH" = "master" ]; then
-  echo "sending lcov data to coveralls.io"
-  cat coverage/lcov.info | coveralls
-  echo "sending lcov data to codeclimate"
-  codeclimate < coverage/lcov.info
-fi
+npm run compile
+npm run compile-dev
+npm run test-cov
+npm run lint-cov

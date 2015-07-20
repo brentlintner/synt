@@ -70,4 +70,5 @@ Test-Suite tests
     regexpr == 0.5.*,
     argparser == 0.3.*,
     hpc == 0.6.*,
+    hlint == 1.*,
     hspec == 2.1.*

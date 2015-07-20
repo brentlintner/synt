@@ -12,8 +12,6 @@ Style/GuardClause:
   Enabled: false
 Style/ClassAndModuleChildren:
   Enabled: false
-Style/Blocks:
-  Enabled: false
 Metrics/MethodLength:
   Max: 18
 Metrics/CyclomaticComplexity:

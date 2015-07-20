@@ -7,6 +7,8 @@ logger = require "./logger"
 pkg = require "./../package"
 log = logger.create "cli"
 
+# NOTE: this is a note
+
 print = (sim) ->
   log.info "Inputs are #{Math.floor sim}% similar."
 
@@ -33,14 +35,14 @@ configure = ->
     .option "-s, --string-compare", "Treat -c and -t as string,
                                     instead of file paths."
     .option "-l, --language [type]", "Type of language that is being compared
-                                      [default=js,coffee,rb,latin]."
+                                      [default=js,coffee,rb,hs,latin]."
     .option "-a, --algorithm [type]",
             "Similarity algorithm [default=jaccard,tanimoto]."
     .option "-n, --ngram [value]",
             "Specify what ngrams are generated and used for
              comparing token sequences. [default=1,2,4..5,10,...,all]"
     .option "-m, --min-threshold [value].",
-            "Similarity threshold and exit with error."
+            "If similarity is below value (ex: 50), exit with error."
 
   app.on "--help", ->
     console.log "  Examples:"
