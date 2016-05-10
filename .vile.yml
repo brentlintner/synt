@@ -122,6 +122,7 @@ license:
       - forthright/vile-eslint
       - forthright/vile-length
       - forthright/vile-nsp
+      - forthright/vile-hlint
       - forthright/vile-stat
       - forthright/vile-tslint
       - forthright/vile-whitespace
