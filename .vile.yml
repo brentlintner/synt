@@ -87,6 +87,11 @@ eslint:
 coffeelint:
   config: coffeelint.json
 
+hlint:
+  allow:
+    - haskell/src
+    - haskell/test
+
 length:
   config:
     file: 100
