@@ -44,7 +44,7 @@
     "test-cov": "bin/test-cov",
     "test-ci-build": "bin/test-ci-build",
     "test-ci-build-all-commits": "bin/test-ci-build-all-commits",
-    "vile": "vile -cpisd --nodecorations"
+    "vile": "vile p -usi --nodecorations"
   },
   "dependencies": {
     "coffee-script": "1.10.0",
