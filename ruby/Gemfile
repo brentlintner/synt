@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem "slop", "~> 3.6"
 gem "manowar", "0.0.1"
+gem "bundler", "~> 1.12"
 gem "rspec", "~> 3.1", require: false, group: :development
 gem "rubocop", "~> 0.28", require: false, group: :development
 gem "rubycritic", "~> 2.8", require: false, group: :development
