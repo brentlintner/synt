@@ -40,6 +40,7 @@
     "dev": "bin/dev",
     "dev-setup": "bin/dev-setup",
     "lint-cov": "bin/lint-cov",
+    "postinstall": "npm run compile && ((bin/bundle-rb-gems && bin/compile-hs) || true)",
     "test": "bin/test && bin/test-ruby && bin/test-haskell",
     "test-cov": "bin/test-cov",
     "test-ci-build": "bin/test-ci-build",
@@ -47,9 +48,9 @@
     "vile": "vile p -usi --nodecorations"
   },
   "dependencies": {
-    "coffee-script": "1.11.1",
+    "coffee-script": "1.12.1",
     "commander": "2.9.0",
-    "esprima": "3.1.1",
+    "esprima": "3.1.2",
     "lodash": "4.17.2",
     "minilog": "3.0.1",
     "nconf": "0.8.4",
@@ -57,7 +58,7 @@
     "shelljs": "0.7.5"
   },
   "devDependencies": {
-    "@forthright/vile": ">=0.11.1",
+    "@forthright/vile": ">=0.11.5",
     "@forthright/vile-coffeelint": ">=0.1.13",
     "@forthright/vile-comment": ">=0.1.16",
     "@forthright/vile-coverage": ">=0.2.13",
@@ -80,8 +81,8 @@
     "coveralls": "2.11.15",
     "istanbul": "0.4.5",
     "mimus": "0.2.3",
-    "mocha": "3.1.2",
-    "npm-check-updates": "^2.8.6",
+    "mocha": "3.2.0",
+    "npm-check-updates": "^2.8.8",
     "sinon": "1.17.6",
     "sinon-chai": "2.8.0",
     "wrench": "1.5.9"
