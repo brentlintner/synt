@@ -19,9 +19,10 @@ dependencies:
     - haskell/.cabal-sandbox
   pre:
     - sh bin/check-libstdc-deb
-  post:
-    - npm run dev-setup
     - sh bin/list-env-versions
+    - npm run dev-setup
+  override:
+    - npm install
 
 test:
   override:
