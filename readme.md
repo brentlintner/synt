@@ -1,4 +1,4 @@
-# synt [![Circle CI](https://circleci.com/gh/brentlintner/synt.svg?style=svg)](https://circleci.com/gh/brentlintner/synt)
+# synt [![Circle CI](https://circleci.com/gh/brentlintner/synt.svg?style=svg)](https://circleci.com/gh/brentlintner/synt) [![score-badge](https://vile.io/api/v0/projects/synt/badges/score?token=USryyHar5xQs7cBjNUdZ)](https://vile.io/~brentlintner/synt) [![security-badge](https://vile.io/api/v0/projects/synt/badges/security?token=USryyHar5xQs7cBjNUdZ)](https://vile.io/~brentlintner/synt) [![coverage-badge](https://vile.io/api/v0/projects/synt/badges/coverage?token=USryyHar5xQs7cBjNUdZ)](https://vile.io/~brentlintner/synt) [![dependency-badge](https://vile.io/api/v0/projects/synt/badges/dependency?token=USryyHar5xQs7cBjNUdZ)](https://vile.io/~brentlintner/synt)
 
 Similar code analysis.
 
