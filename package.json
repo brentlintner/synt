@@ -77,7 +77,6 @@
     "vile-git": ">=0.5.1",
     "vile-hlint": ">=0.2.1",
     "vile-language": ">=0.1.12",
-    "vile-length": ">=0.1.12",
     "vile-ncu": ">=0.2.1",
     "vile-nsp": ">=0.2.13",
     "vile-rubocop": ">=0.2.1",
