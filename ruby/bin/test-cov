@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-rm -rf coverage/
-TEST_COV=true bin/test

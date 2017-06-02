@@ -1,6 +1,0 @@
-#!/usr/bin/env sh
-cd ruby/
-bundle exec bin/synt "$@"
-status="$?"
-cd ../
-exit $status

@@ -1,0 +1,164 @@
+found: test/fixtures/system/test.copy.js
+found: test/fixtures/system/test.js
+found: test/fixtures/system/test.ts
+
+83% match
+
+in: test/fixtures/system/test.js
+
+function (a, b) {
+  const dx = a.x - b.x;
+  const dy = a.y - b.y;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+function (an, ab) {
+  const dx = an.x - ab.x;
+  const dy = an.y - ab.y;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+89% match
+
+in: test/fixtures/system/test.js
+
+class FooBazzzz {
+  constructor() {
+  }
+  static get area() {
+    console.log('a');
+    console.log('b');
+    console.log('c');
+    console.log('c');
+    console.log('c');
+  }
+}
+
+class FooBarrr {
+  constructor() {
+  }
+  static get area() {
+    console.log('a');
+    console.log('b');
+    console.log('c');
+    console.log('c');
+    console.log('c');
+  }
+}
+
+93% match
+
+in: test/fixtures/system/test.copy.js
+
+(a, b) => {
+  console.log();
+  if (!a) {
+    console.log(a);
+  }
+}
+
+in: test/fixtures/system/test.js
+
+(a, b) => {
+  console.log(b);
+  if (a) {
+    console.log(a);
+  }
+}
+
+93% match
+
+in: test/fixtures/system/test.js
+
+(a, b) => {
+  console.log(b);
+  if (a) {
+    console.log(a);
+  }
+}
+
+(a, b) => {
+  console.log();
+  if (!a) {
+    console.log(a);
+  }
+}
+
+100% match
+
+in: test/fixtures/system/test.copy.js
+
+(a, b) => {
+  console.log();
+  if (!a) {
+    console.log(a);
+  }
+}
+
+in: test/fixtures/system/test.js
+
+(a, b) => {
+  console.log();
+  if (!a) {
+    console.log(a);
+  }
+}
+
+100% match
+
+in: test/fixtures/system/test.js
+
+function () {
+  console.log('a');
+  console.log('b');
+  console.log('c');
+  console.log('c');
+  console.log('c');
+}
+
+function () {
+  console.log('a');
+  console.log('b');
+  console.log('c');
+  console.log('c');
+  console.log('c');
+}
+
+87% match
+
+in: test/fixtures/system/test.ts
+
+class Greeter {
+  greeting: string;
+  constructor(message: string) {
+    this.greeting = message;
+  }
+  static greet(a, y, x) {
+    let b = y + x
+    return a + "Hello, " + this.greeting;
+  }
+}
+
+class FooGreeter {
+  constructor(message: string) {
+    this.greeting = message;
+  }
+  static greet(a, y, x) {
+    let b = x + y
+    return a + "Hello, " + this.greeting;
+  }
+}
+
+100% match
+
+in: test/fixtures/system/test.ts
+
+static greet(a, y, x) {
+    let b = y + x
+    return a + "Hello, " + this.greeting;
+  }
+
+static greet(a, y, x) {
+    let b = x + y
+    return a + "Hello, " + this.greeting;
+  }

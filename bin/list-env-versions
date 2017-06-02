@@ -1,12 +1,5 @@
 #!/usr/bin/env sh
-
 set -x
-
 uname -a
 node --version
 npm --version
-ruby --version
-gem --version
-gcc --version
-ghc --version
-cabal --version

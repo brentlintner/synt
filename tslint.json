@@ -1,0 +1,51 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {},
+  "rules": {
+    "class-name": true,
+    "cyclomatic-complexity": [true, 5],
+    "curly": false,
+    "jsdoc-format": true,
+    "label-position": true,
+    "max-line-length": [true, 80],
+    "member-ordering": [true,
+      "public-before-private",
+      "static-before-instance",
+      "variables-before-functions"
+    ],
+    "no-arg": true,
+    "no-bitwise": false,
+    "no-construct": true,
+    "no-console": false,
+    "no-debugger": true,
+    "no-duplicate-variable": true,
+    "no-eval": true,
+    "no-switch-case-fall-through": false,
+    "no-trailing-whitespace": true,
+    "no-unused-expression": true,
+    "no-var-requires": false,
+    "one-line": [
+      true,
+      "check-open-brace",
+      "check-catch",
+      "check-else",
+      "check-whitespace"
+    ],
+    "quotemark": [true, "double"],
+    "radix": true,
+    "semicolon": false,
+    "trailing-comma": false,
+    "triple-equals": [false],
+    "typedef-whitespace": [
+      true,
+      ["callSignature", "noSpace"],
+      ["catchClause", "noSpace"],
+      ["indexSignature", "space"]
+    ],
+    "variable-name": false
+  },
+  "rulesDirectory": []
+}

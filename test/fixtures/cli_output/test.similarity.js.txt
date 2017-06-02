@@ -1,0 +1,21 @@
+found: test/fixtures/system/test.js
+
+100% match
+
+in: test/fixtures/system/test.js
+
+function () {
+  console.log('a');
+  console.log('b');
+  console.log('c');
+  console.log('c');
+  console.log('c');
+}
+
+function () {
+  console.log('a');
+  console.log('b');
+  console.log('c');
+  console.log('c');
+  console.log('c');
+}

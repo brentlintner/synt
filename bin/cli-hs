@@ -1,6 +1,0 @@
-#!/usr/bin/env sh
-cd haskell/
-cabal exec synt -- "$@"
-status="$?"
-cd ../
-exit $status

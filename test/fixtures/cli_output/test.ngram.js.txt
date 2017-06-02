@@ -1,0 +1,49 @@
+found: test/fixtures/system/test.js
+
+89% match
+
+in: test/fixtures/system/test.js
+
+class FooBazzzz {
+  constructor() {
+  }
+  static get area() {
+    console.log('a');
+    console.log('b');
+    console.log('c');
+    console.log('c');
+    console.log('c');
+  }
+}
+
+class FooBarrr {
+  constructor() {
+  }
+  static get area() {
+    console.log('a');
+    console.log('b');
+    console.log('c');
+    console.log('c');
+    console.log('c');
+  }
+}
+
+100% match
+
+in: test/fixtures/system/test.js
+
+function () {
+  console.log('a');
+  console.log('b');
+  console.log('c');
+  console.log('c');
+  console.log('c');
+}
+
+function () {
+  console.log('a');
+  console.log('b');
+  console.log('c');
+  console.log('c');
+  console.log('c');
+}

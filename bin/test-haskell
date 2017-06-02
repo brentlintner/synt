@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-cd haskell/
-./bin/test
-cd ../

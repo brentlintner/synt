@@ -1,0 +1,40 @@
+found: test/fixtures/system/test.ts
+
+87% match
+
+in: test/fixtures/system/test.ts
+
+class Greeter {
+  greeting: string;
+  constructor(message: string) {
+    this.greeting = message;
+  }
+  static greet(a, y, x) {
+    let b = y + x
+    return a + "Hello, " + this.greeting;
+  }
+}
+
+class FooGreeter {
+  constructor(message: string) {
+    this.greeting = message;
+  }
+  static greet(a, y, x) {
+    let b = x + y
+    return a + "Hello, " + this.greeting;
+  }
+}
+
+100% match
+
+in: test/fixtures/system/test.ts
+
+static greet(a, y, x) {
+    let b = y + x
+    return a + "Hello, " + this.greeting;
+  }
+
+static greet(a, y, x) {
+    let b = x + y
+    return a + "Hello, " + this.greeting;
+  }

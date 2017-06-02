@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-coffee -cwbo lib src &
-coffee -cwb test &

@@ -1,2 +1,0 @@
-#!/usr/bin/env sh
-cabal install --verbose=$1 --avoid-reinstalls

@@ -1,0 +1,83 @@
+found: test/fixtures/system/test.js
+
+83% match
+
+in: test/fixtures/system/test.js
+
+function (a, b) {
+  const dx = a.x - b.x;
+  const dy = a.y - b.y;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+function (an, ab) {
+  const dx = an.x - ab.x;
+  const dy = an.y - ab.y;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+89% match
+
+in: test/fixtures/system/test.js
+
+class FooBazzzz {
+  constructor() {
+  }
+  static get area() {
+    console.log('a');
+    console.log('b');
+    console.log('c');
+    console.log('c');
+    console.log('c');
+  }
+}
+
+class FooBarrr {
+  constructor() {
+  }
+  static get area() {
+    console.log('a');
+    console.log('b');
+    console.log('c');
+    console.log('c');
+    console.log('c');
+  }
+}
+
+93% match
+
+in: test/fixtures/system/test.js
+
+(a, b) => {
+  console.log(b);
+  if (a) {
+    console.log(a);
+  }
+}
+
+(a, b) => {
+  console.log();
+  if (!a) {
+    console.log(a);
+  }
+}
+
+100% match
+
+in: test/fixtures/system/test.js
+
+function () {
+  console.log('a');
+  console.log('b');
+  console.log('c');
+  console.log('c');
+  console.log('c');
+}
+
+function () {
+  console.log('a');
+  console.log('b');
+  console.log('c');
+  console.log('c');
+  console.log('c');
+}

@@ -1,15 +1,7 @@
 node_modules
-**/*.js
-!test/fixtures/compare-js*.js
+.nyc_output
 coverage
-notes.txt
-haskell/dist
-ruby/vendor/cache
-ruby/.bundle
-ruby/coverage
+lib
 npm-debug.log
-haskell/cabal.sandbox.config
-haskell/.cabal-sandbox
 tmp
 tags
-haskell/*.tix

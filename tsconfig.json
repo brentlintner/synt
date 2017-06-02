@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "outDir": "lib",
+    "removeComments": true,
+    "rootDir": "src",
+    "target": "ES5",
+    "typeRoots": [
+      "src/@types"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "test"
+  ]
+}

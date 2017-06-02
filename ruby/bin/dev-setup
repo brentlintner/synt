@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-bundle config without
-bundle install

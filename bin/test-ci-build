@@ -1,9 +1,20 @@
-#!/usr/bin/env sh
+#!/usr/bin/env node
+require("shelljs/global")
 
-set -e
-set -x
+exec(
+  "npm run -s compile",
+  function(code) {
+    if (code !== 0) exit(code)
 
-npm run compile
-npm run compile-dev
-npm run test-cov
-npm run lint-cov
+    exec(
+      "npm run -s test-cov",
+      function(code) {
+        if (code !== 0) exit(code)
+
+        exec(
+          "npm run -s lint-cov",
+          function(code) {
+            if (code !== 0) exit(code)
+          })
+      })
+  })

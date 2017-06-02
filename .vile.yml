@@ -1,93 +1,66 @@
 vile:
   ignore:
-    - .test
-    - ruby/.bundle/**
-    - test/fixtures/**
-    - test/**/*.js
-    - .ackrc
     - appveyor.yml
     - bin
-    - .bundle
     - circle.yml
-    - haskell/dist/**
-    - haskell/.cabal-sandbox/**
+    - CODE_OF_CONDUCT.md
+    - coffeelint.json
     - coverage
-    - public
-    - db
-    - vendor
-    - tmp
-    - .git
-    - node_modules
-    - .log
-    - .keep
-    - tags
-    - .brakeman.yml
-    - .ctags
     - .editorconfig
-    - .env
-    - .eslintignore
-    - .eslintrc
+    - .git
+    - .gitattributes
     - .gitignore
-    - .npmrc
-    - .reek
-    - .rspec
-    - .rubocop.yml
-    - .ruby-version
-    - .vile.yml
     - LICENSE
-
-rubycritic:
-  allow:
-    - ruby
-  config:
-    method_count: 10
-    complexity: 80
-    churn: 20
-    rating: "A"
+    - node_modules
+    - .nyc_output
+    - package-lock.json
+    - README.md
+    - src/@types
+    - tags
+    - test/fixtures/**
+    - tsconfig.json
+    - tslint.json
+    - tmp
+    - .travis.yml
+    - retire-report.json
+    - .vile.yml
 
 depcheck:
   config:
-    ignore_dev_deps: false
+    ignore_dev_deps: true
+    ignore_deps:
+      - "@types/**"
     ignore_dirs:
       - src
-      - typings
       - node_modules
-      - coverage
-      - haskell
-      - ruby
       - tmp
-    ignore_deps:
-      - mocha
-      - babel-cli
-      - coffee-script
-      - npm-check-updates
-      - istanbul
-      - release-it
-      - typescript
-      - wrench
-      - pryjs
-      - shelljs
-      - "vile-*"
 
-rubcocop:
-  config: .rubocop.yml
+eclint:
+  ignore:
+    - lib
 
-bundler-audit:
+retire:
   config:
-    update_db: true
+    ignore:
+      - lib
+
+comment:
+  ignore:
+    - lib
+
+escomplex:
+  allow:
+    - lib
+  ignore:
+    - src
 
 coverage:
   config:
     path: coverage/lcov.info
 
-eslint:
-  config: .eslintrc
-  ignore: .eslintignore
+language:
+  ignore:
+    - lib
 
 coffeelint:
   config: coffeelint.json
-
-hlint:
-  allow:
-    - haskell/src
-    - haskell/test

@@ -1,13 +1,6 @@
 machine:
-  pre:
-    - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 10
-    - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 10
-  ghc:
-    version: 7.10.2
-  ruby:
-    version: 2.3.1
   node:
-    version: 5.11.1
+    version: 8
 
 checkout:
   post:
@@ -15,17 +8,12 @@ checkout:
     - git fetch origin $CIRCLE_BRANCH
 
 dependencies:
-  cache_directories:
-    - haskell/.cabal-sandbox
   pre:
-    - sh bin/check-libstdc-deb
+    - npm i -g npm@5
     - sh bin/list-env-versions
-    - npm run dev-setup
-  override:
-    - npm install
 
 test:
   override:
     - npm run test-ci-build
   post:
-    - PATH=haskell/.cabal-sandbox/bin:$PATH npm run vile
+    - npm run vile
