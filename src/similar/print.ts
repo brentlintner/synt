@@ -4,7 +4,6 @@ import cardinal = require("cardinal")
 
 const print = (
   group : synt.ParseResultGroup,
-  ftype : string,
   nocolors : boolean
 ) : void => {
   _.each(group, (results : synt.ParseResultMatchList, sim : string) => {

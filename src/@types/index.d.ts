@@ -110,7 +110,6 @@ declare namespace synt {
     export interface SimilarPrint {
       print : (
         group    : synt.ParseResultGroup,
-        ftype    : "js" | "ts",
         nocolors : boolean
       ) => void;
     }

@@ -15,8 +15,8 @@ const compare = (
 
   const { js, ts } = similar.compare(files, opts)
 
-  similar.print(js, "js", nocolors)
-  similar.print(ts, "ts", nocolors)
+  similar.print(js, nocolors)
+  similar.print(ts, nocolors)
 }
 
 const configure = () => {

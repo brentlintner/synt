@@ -1,5 +1,7 @@
 # synt [![Circle CI](https://circleci.com/gh/brentlintner/synt.svg?style=shield)](https://circleci.com/gh/brentlintner/synt) [![score-badge](https://vile.io/api/v0/projects/synt/badges/score?token=USryyHar5xQs7cBjNUdZ)](https://vile.io/~brentlintner/synt) [![security-badge](https://vile.io/api/v0/projects/synt/badges/security?token=USryyHar5xQs7cBjNUdZ)](https://vile.io/~brentlintner/synt) [![coverage-badge](https://vile.io/api/v0/projects/synt/badges/coverage?token=USryyHar5xQs7cBjNUdZ)](https://vile.io/~brentlintner/synt) [![dependency-badge](https://vile.io/api/v0/projects/synt/badges/dependency?token=USryyHar5xQs7cBjNUdZ)](https://vile.io/~brentlintner/synt) [![npm version](https://badge.fury.io/js/synt.svg)](https://badge.fury.io/js/synt)
 
+![demo image](https://user-images.githubusercontent.com/93340/26853130-c50f2724-4ade-11e7-905e-6923af2a759d.png)
+
 Find similar functions and classes in your JavaScript/TypeScript code.
 
 ## Supported Languages
@@ -34,7 +36,9 @@ synt -h
 *example*
 
 ```sh
-synt analyze lib
+git clone https://github.com/brentlintner/synt.git
+cd synt
+synt analyze src
 ```
 
 ### Library
