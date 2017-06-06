@@ -1,7 +1,6 @@
 node_modules
 .nyc_output
 coverage
-lib
 npm-debug.log
 tmp
 tags
