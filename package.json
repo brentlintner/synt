@@ -1,6 +1,6 @@
 {
   "name": "synt",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Find similar functions and classes in your JavaScript/TypeScript code",
   "author": "Brent Lintner <brent.lintner@gmail.com>",
   "repository": {
