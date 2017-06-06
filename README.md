@@ -47,10 +47,17 @@ synt analyze src
 
 ```javascript
 const synt = require("synt")
+
 const files = [ "a.js", "b.ts" ]
-const { js, ts } = synt.compare(files)
+
+const { js, ts } = synt.compare(files, {
+  similarity: 70,
+  ngram: 1,
+  minlength: 10
+})
 
 synt.print(js)
+
 synt.print(ts)
 ```
 
