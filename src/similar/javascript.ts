@@ -7,12 +7,12 @@ import estraverse = require("estraverse")
 import * as es from "estree"
 
 const FUNCTION_OR_CLASS_NODE : string[] = [
-  "ArrowFunctionExpression",
-  "ClassDeclaration",
-  "FunctionDeclaration",
-  "FunctionExpression"
+  esprima.Syntax.ArrowFunctionExpression,
+  esprima.Syntax.ClassDeclaration,
+  esprima.Syntax.FunctionDeclaration,
+  esprima.Syntax.FunctionExpression
   // TODO: (FE/FD causes dupe of MD)
-  // "MethodDefinition"
+  // esprima.Syntaxt.MethodDefinition
   ]
 
 const normalize = (
@@ -48,10 +48,11 @@ const parse_methods_and_classes = (
       if (!is_a_method_or_class(node)) return
       const method = ast_to_code(node)
       const tokens = tokenize(method)
+      const is_class = node.type === esprima.Syntax.ClassDeclaration
       const result = {
         ast: node,
         code: method,
-        is_class: node.type === "ClassDeclaration",
+        is_class: is_class,
         path: filepath,
         pos: line_info(node),
         tokens,
