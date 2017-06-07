@@ -17,6 +17,7 @@ declare namespace synt {
     minlength?  : string | number;
     ngram?      : string | number;
     similarity? : string | number;
+    estype?     : string;
   }
 
   export interface CLIOptions extends BaseOptions, commander.CommanderStatic {}
@@ -99,12 +100,11 @@ declare namespace synt {
       ) => string[];
     }
 
-    export interface SimilarJS {
-      find : (files : string[]) => JSParseResult[];
-    }
-
-    export interface SimilarTS {
-      find : (files : string[]) => TSParseResult[];
+    export interface SimilarParser {
+      find : (
+        files : string[],
+        opts : CompareOptions
+      ) => ParseResult[];
     }
 
     export interface SimilarPrint {

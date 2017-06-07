@@ -1,6 +1,19 @@
+found: test/fixtures/system/test-es.js
 found: test/fixtures/system/test.copy.js
 found: test/fixtures/system/test.js
 found: test/fixtures/system/test.ts
+
+76% match
+
+in: test/fixtures/system/test-es.js
+
+function diag(x, y) {
+  return sqrt(square(x) + square(y));
+}
+
+function dude(x, y) {
+  return sqrt(square(x ^ 2) + square(y));
+}
 
 83% match
 

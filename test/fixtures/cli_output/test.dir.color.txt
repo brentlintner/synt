@@ -1,6 +1,19 @@
+found: test/fixtures/system/test-es.js
 found: test/fixtures/system/test.copy.js
 found: test/fixtures/system/test.js
 found: test/fixtures/system/test.ts
+
+76% match
+
+in: test/fixtures/system/test-es.js
+
+[90m 9: [94mfunction[39m [37mdiag[39m[90m([39m[37mx[39m[32m,[39m [37my[39m[90m)[39m [33m{[39m
+[90m10:   [31mreturn[39m [37msqrt[39m[90m([39m[37msquare[39m[90m([39m[37mx[39m[90m)[39m [93m+[39m [37msquare[39m[90m([39m[37my[39m[90m)[39m[90m)[39m[90m;[39m
+[90m11: [33m}[39m
+
+[90m13: [94mfunction[39m [37mdude[39m[90m([39m[37mx[39m[32m,[39m [37my[39m[90m)[39m [33m{[39m
+[90m14:   [31mreturn[39m [37msqrt[39m[90m([39m[37msquare[39m[90m([39m[37mx[39m [93m^[39m [34m2[39m[90m)[39m [93m+[39m [37msquare[39m[90m([39m[37my[39m[90m)[39m[90m)[39m[90m;[39m
+[90m15: [33m}[39m
 
 83% match
 

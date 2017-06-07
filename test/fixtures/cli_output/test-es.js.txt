@@ -1,0 +1,13 @@
+found: test/fixtures/system/test-es.js
+
+76% match
+
+in: test/fixtures/system/test-es.js
+
+function diag(x, y) {
+  return sqrt(square(x) + square(y));
+}
+
+function dude(x, y) {
+  return sqrt(square(x ^ 2) + square(y));
+}

@@ -23,8 +23,14 @@ const normalize = (
 const tokenize = (code : string) : string[] =>
   normalize(esprima.tokenize(code))
 
-const astify = (code : string) : es.Program =>
-  esprima.parse(code, { loc: true })
+const astify = (
+  code : string,
+  opts : synt.CompareOptions
+) : es.Program =>
+  esprima.parse(code, {
+    loc: true,
+    sourceType: _.get(opts, "estype", "module")
+  })
 
 const ast_to_code = (node : es.Node) => {
   const opts = { format: { indent: { style: "  " } } }
@@ -52,7 +58,7 @@ const parse_methods_and_classes = (
       const result = {
         ast: node,
         code: method,
-        is_class: is_class,
+        is_class,
         path: filepath,
         pos: line_info(node),
         tokens,
@@ -66,14 +72,15 @@ const parse_methods_and_classes = (
 }
 
 const find_similar_methods_and_classes = (
-  filepaths : string[]
+  filepaths : string[],
+  opts : synt.CompareOptions
 ) : synt.ParseResult[] =>
   _.flatMap(filepaths, (filepath) => {
     const code = fs.readFileSync(filepath).toString()
-    const node = astify(code)
+    const node = astify(code, opts)
     return parse_methods_and_classes(node, filepath)
   })
 
 export = {
   find: find_similar_methods_and_classes
-} as synt.Module.SimilarJS
+} as synt.Module.SimilarParser

@@ -58,7 +58,8 @@ const PASSTHROUGH_NODES : ts.SyntaxKind[] = FUNCTION_OR_CLASS_NODE.concat([
 
 const astify = (
   code : string,
-  filepath : string
+  filepath : string,
+  opts : synt.CompareOptions
 ) : ts.SourceFile => {
   ts.createProgram([ filepath ], {})
   return ts.createSourceFile(
@@ -148,15 +149,16 @@ const parse_methods_and_classes = (
 }
 
 const find_similar_methods_and_classes = (
-  filepaths : string[]
+  filepaths : string[],
+  opts : synt.CompareOptions
 ) : synt.ParseResult[] =>
   _.flatMap(filepaths, (filepath) => {
     const code = fs.readFileSync(filepath).toString()
-    const node = astify(code, filepath)
+    const node = astify(code, filepath, opts)
     const root_node = node
     return parse_methods_and_classes(node, root_node, filepath)
   })
 
 export = {
   find: find_similar_methods_and_classes
-} as synt.Module.SimilarTS
+} as synt.Module.SimilarParser

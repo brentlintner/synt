@@ -10,10 +10,15 @@ CLI = path.resolve(
 FIXTURES = path.join __dirname, "..", "fixtures"
 SYSTEM = path.join FIXTURES, "system"
 FILE_JS = path.join SYSTEM, "test.js"
+FILE_JS_ES = path.join SYSTEM, "test-es.js"
 FILE_TS = path.join SYSTEM, "test.ts"
 
 CLI_OUTPUT_TEST_JS = path
   .join FIXTURES, "cli_output", "test.js.txt"
+CLI_OUTPUT_TEST_ES_MODULES = path
+  .join FIXTURES, "cli_output", "test-es.js.txt"
+CLI_OUTPUT_TEST_ES_MODULES_FAIL = path
+  .join FIXTURES, "cli_output", "test-es-fail.js.txt"
 CLI_OUTPUT_TEST_JS_COLOR = path
   .join FIXTURES, "cli_output", "test.js.color.txt"
 CLI_OUTPUT_TEST_JS_SIM = path
@@ -37,7 +42,7 @@ read = (path) -> fs.readFileSync(path).toString()
 describe "system :: cli", ->
   describe "javascript", ->
     it "can compare similar functions and classes", (done) ->
-      cmd = CLI + " a -d #{FILE_JS}"
+      cmd = CLI + " analyze -d #{FILE_JS}"
 
       child_process.exec cmd,
         (error, stdout, stderr) ->
@@ -45,9 +50,32 @@ describe "system :: cli", ->
           expect(stdout).to.eql(read CLI_OUTPUT_TEST_JS)
           done()
 
-  describe "typescript", (done) ->
+    describe "es modules", ->
+      describe "when estype is not set (module by default)", ->
+        it "parses the code as expected", (done) ->
+          cmd = CLI + " analyze -d #{FILE_JS_ES}"
+
+          child_process.exec cmd,
+            (error, stdout, stderr) ->
+              expect(error).not.to.be.ok
+              expect(stdout).to.eql(read CLI_OUTPUT_TEST_ES_MODULES)
+              done()
+
+      describe "when estype is set as script", ->
+        it "fails to parse the code", (done) ->
+          cmd = CLI + " analyze -d --estype script #{FILE_JS_ES}"
+
+          child_process.exec cmd,
+            (error, stdout, stderr) ->
+              expect(error.code).to.eql 1
+              expect(stderr).to.match /esprima/i
+              expect(stderr).to.match /line 1: unexpected token/i
+              expect(stdout).to.eql(read CLI_OUTPUT_TEST_ES_MODULES_FAIL)
+              done()
+
+  describe "typescript", ->
     it "can compare similar functions and classes", (done) ->
-      cmd = CLI + " a -d #{FILE_TS}"
+      cmd = CLI + " analyze -d #{FILE_TS}"
 
       child_process.exec cmd,
         (error, stdout, stderr) ->
@@ -84,8 +112,8 @@ describe "system :: cli", ->
           expect(stdout).to.match new RegExp pkg.version
           done()
 
-    it "can set a sim threshold", (done) ->
-      cmd = CLI + " a -s 95 -d #{FILE_JS}"
+    it "can set analyze sim threshold", (done) ->
+      cmd = CLI + " analyze -s 95 -d #{FILE_JS}"
 
       child_process.exec cmd,
         (error, stdout, stderr) ->
@@ -94,7 +122,7 @@ describe "system :: cli", ->
           done()
 
     it "can set ngram level", (done) ->
-      cmd = CLI + " a -n 10 -d #{FILE_JS}"
+      cmd = CLI + " analyze -n 10 -d #{FILE_JS}"
 
       child_process.exec cmd,
         (error, stdout, stderr) ->
@@ -103,7 +131,7 @@ describe "system :: cli", ->
           done()
 
     it "can set token level", (done) ->
-      cmd = CLI + " a -m 50 -d #{FILE_JS}"
+      cmd = CLI + " analyze -m 50 -d #{FILE_JS}"
 
       child_process.exec cmd,
         (error, stdout, stderr) ->
@@ -112,7 +140,7 @@ describe "system :: cli", ->
           done()
 
     it "can output in colors", (done) ->
-      cmd = CLI + " a #{SYSTEM}"
+      cmd = CLI + " analyze #{SYSTEM}"
 
       child_process.exec cmd,
         (error, stdout, stderr) ->
@@ -121,7 +149,7 @@ describe "system :: cli", ->
           done()
 
     it "can compare via a dir", (done) ->
-      cmd = CLI + " a -d #{SYSTEM}"
+      cmd = CLI + " analyze -d #{SYSTEM}"
 
       child_process.exec cmd,
         (error, stdout, stderr) ->

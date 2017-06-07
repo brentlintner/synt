@@ -147,18 +147,19 @@ const filter_redundencies = (
 }
 
 const _compare = (
-  files   : string[],
-  ftype   : string,
-  n_len   : number,
-  t_len   : number,
-  sim_min : number
+  files : string[],
+  ftype : string,
+  opts  : synt.CompareOptions
 ) : synt.ParseResultGroup => {
   const is_ts = ftype === "ts"
   const is_file = is_ts ? /\.ts$/ : /\.js$/
   files = _.filter(files, (file) => is_file.test(file))
   const parse = is_ts ? parse_ts : parse_js
-  const items : synt.ParseResult[] = parse.find(files)
+  const items : synt.ParseResult[] = parse.find(files, opts)
   const group : synt.ParseResultGroup = {}
+  const t_len = parse_token_length(_.toString(opts.minlength))
+  const n_len = parse_ngram_length(_.toString(opts.ngram))
+  const sim_min = parse_threshold(_.toString(opts.similarity))
 
   // TODO: better perf (this + ngram gen is at least O(n^3))
   each_pair(items, (src : synt.ParseResult, cmp : synt.ParseResult) => {
@@ -179,13 +180,8 @@ const compare = (
   opts : synt.CompareOptions = {}
 ) : synt.ParseResultGroups => {
   files = _.concat([], files)
-  const t_len = parse_token_length(_.toString(opts.minlength))
-  const n_len = parse_ngram_length(_.toString(opts.ngram))
-  const threshold = parse_threshold(_.toString(opts.similarity))
-
-  const js_group = _compare(files, "js", n_len, t_len, threshold)
-  const ts_group = _compare(files, "ts", n_len, t_len, threshold)
-
+  const js_group = _compare(files, "js", opts)
+  const ts_group = _compare(files, "ts", opts)
   return { js: js_group, ts: ts_group }
 }
 

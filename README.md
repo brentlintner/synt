@@ -53,7 +53,8 @@ const files = [ "a.js", "b.ts" ]
 const { js, ts } = synt.compare(files, {
   similarity: 70,
   ngram: 1,
-  minlength: 10
+  minlength: 10,
+  estype: "module"
 })
 
 synt.print(js)
