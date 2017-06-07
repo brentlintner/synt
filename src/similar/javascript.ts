@@ -77,7 +77,14 @@ const find_similar_methods_and_classes = (
 ) : synt.ParseResult[] =>
   _.flatMap(filepaths, (filepath) => {
     const code = fs.readFileSync(filepath).toString()
-    const node = astify(code, opts)
+    let node : es.Node
+
+    try {
+      node = astify(code, opts)
+    } catch (err) {
+      throw new Error(`in ${filepath}\n\n${err.stack}`)
+    }
+
     return parse_methods_and_classes(node, filepath)
   })
 

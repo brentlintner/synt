@@ -73,6 +73,24 @@ describe "system :: cli", ->
               expect(stdout).to.eql(read CLI_OUTPUT_TEST_ES_MODULES_FAIL)
               done()
 
+    describe "when a file fails to parse", ->
+      it "also shows the filename", (done) ->
+        cmd = CLI + " analyze -d --estype script #{FILE_JS_ES}"
+
+        child_process.exec cmd,
+          (error, stdout, stderr) ->
+            expect(error.code).to.eql 1
+            console.log(stdout)
+            expect(stderr)
+              .to.match new RegExp("Error: in test/fixtures/system/test-es.js")
+            expect(stderr)
+              .to.match new RegExp(path.relative(process.cwd(), FILE_JS_ES))
+
+            expect(stderr).to.match /line 1: unexpected token/i
+            expect(stderr).match /esprima/i
+            expect(stdout).to.eql(read CLI_OUTPUT_TEST_ES_MODULES_FAIL)
+            done()
+
   describe "typescript", ->
     it "can compare similar functions and classes", (done) ->
       cmd = CLI + " analyze -d #{FILE_TS}"
