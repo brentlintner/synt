@@ -35,12 +35,14 @@ CLI_OUTPUT_TEST_JS_TS_DIR_COLOR = path
   .join FIXTURES, "cli_output", "test.dir.color.txt"
 
 cli_output = (path) ->
-  data = fs.readFileSync(path).toString()
-
   if on_win
-    data.replace(/\\/g, "/")
+    fs.readFileSync(path)
+      .toString()
+      .replace(/\r\n/g, "\n")
+      .replace(/\//g, "\\")
   else
-    data
+    fs.readFileSync(path)
+      .toString()
 
 # TODO: consider testing more in depth for false positives
 #       -> currently these tests cover a lot of it indirectly
@@ -86,10 +88,12 @@ describe "system :: cli", ->
         system.exec cmd,
           (error, stdout, stderr) ->
             expect(error.code).to.eql 1
-            expect(stderr)
-              .to.match new RegExp("Error: in test/fixtures/system/test-es.js")
-            expect(stderr)
-              .to.match new RegExp(path.relative(process.cwd(), FILE_JS_ES))
+            if on_win
+              expect(stderr)
+                .to.match /Error: in test\\fixtures\\system\\test\-es\.js/gi
+            else
+              expect(stderr)
+                .to.match new RegExp("Error: in test/fixtures/system/test-es.js")
 
             expect(stderr).to.match /line 1: unexpected token/i
             expect(stderr).match /esprima/i

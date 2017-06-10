@@ -1,6 +1,8 @@
+os = require "os"
 path = require "path"
 child_process = require "child_process"
 chai = require "chai"
+on_win = os.platform() == "win32"
 expect = chai.expect
 
 SYNT_BIN = path.join(__dirname, "..", "..", "bin", "synt")
@@ -28,17 +30,25 @@ exec = (args, cb, stdio) ->
   proc.on "error", (e) ->
     unless cb_called
       cb_called = true
+      if on_win
+        out = new Buffer(out).toString("utf-8").replace(/\r\n/g, "\n")
+      else
+        out = new Buffer(out).toString("utf-8")
       cb(
         e,
-        new Buffer(out).toString("utf-8"),
+        out,
         new Buffer(err).toString("utf-8"))
 
   proc.on "close", (code) ->
     unless cb_called
       cb_called = true
+      if on_win
+        out = new Buffer(out).toString("utf-8").replace(/\r\n/g, "\n")
+      else
+        out = new Buffer(out).toString("utf-8")
       cb(
         { code: code },
-        new Buffer(out).toString("utf-8"),
+        out,
         new Buffer(err).toString("utf-8"))
 
   proc
