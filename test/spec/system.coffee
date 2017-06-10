@@ -1,8 +1,10 @@
 fs = require "fs"
+os = require "os"
 path = require "path"
 chai = require "chai"
 pkg = require "./../../package"
 system = require "./../helpers/system"
+on_win = os.platform() == "win32"
 expect = chai.expect
 
 FIXTURES = path.join __dirname, "..", "fixtures"
@@ -32,7 +34,13 @@ CLI_OUTPUT_TEST_JS_TS_DIR = path
 CLI_OUTPUT_TEST_JS_TS_DIR_COLOR = path
   .join FIXTURES, "cli_output", "test.dir.color.txt"
 
-read = (path) -> fs.readFileSync(path).toString()
+cli_output = (path) ->
+  data = fs.readFileSync(path).toString()
+
+  if on_win
+    data.replace(/\\/g, "/")
+  else
+    data
 
 # TODO: consider testing more in depth for false positives
 #       -> currently these tests cover a lot of it indirectly
@@ -45,7 +53,7 @@ describe "system :: cli", ->
       system.exec cmd,
         (error, stdout, stderr) ->
           expect(error.code).to.eql 0
-          expect(stdout).to.eql(read CLI_OUTPUT_TEST_JS)
+          expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_JS)
           done()
 
     describe "es modules", ->
@@ -56,7 +64,7 @@ describe "system :: cli", ->
           system.exec cmd,
             (error, stdout, stderr) ->
               expect(error.code).to.eql 0
-              expect(stdout).to.eql(read CLI_OUTPUT_TEST_ES_MODULES)
+              expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_ES_MODULES)
               done()
 
       describe "when estype is set as script", ->
@@ -68,7 +76,7 @@ describe "system :: cli", ->
               expect(error.code).to.eql 1
               expect(stderr).to.match /esprima/i
               expect(stderr).to.match /line 1: unexpected token/i
-              expect(stdout).to.eql(read CLI_OUTPUT_TEST_ES_MODULES_FAIL)
+              expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_ES_MODULES_FAIL)
               done()
 
     describe "when a file fails to parse", ->
@@ -85,7 +93,7 @@ describe "system :: cli", ->
 
             expect(stderr).to.match /line 1: unexpected token/i
             expect(stderr).match /esprima/i
-            expect(stdout).to.eql(read CLI_OUTPUT_TEST_ES_MODULES_FAIL)
+            expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_ES_MODULES_FAIL)
             done()
 
   describe "typescript", ->
@@ -95,7 +103,7 @@ describe "system :: cli", ->
       system.exec cmd,
         (error, stdout, stderr) ->
           expect(error.code).to.eql 0
-          expect(stdout).to.eql(read CLI_OUTPUT_TEST_TS)
+          expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_TS)
           done()
 
   describe "in general", ->
@@ -133,7 +141,7 @@ describe "system :: cli", ->
       system.exec cmd,
         (error, stdout, stderr) ->
           expect(error.code).to.eql 0
-          expect(stdout).to.eql(read CLI_OUTPUT_TEST_JS_SIM)
+          expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_JS_SIM)
           done()
 
     it "can set ngram level", (done) ->
@@ -142,7 +150,7 @@ describe "system :: cli", ->
       system.exec cmd,
         (error, stdout, stderr) ->
           expect(error.code).to.eql 0
-          expect(stdout).to.eql(read CLI_OUTPUT_TEST_JS_NGRAM)
+          expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_JS_NGRAM)
           done()
 
     it "can set token level", (done) ->
@@ -151,7 +159,7 @@ describe "system :: cli", ->
       system.exec cmd,
         (error, stdout, stderr) ->
           expect(error.code).to.eql 0
-          expect(stdout).to.eql(read CLI_OUTPUT_TEST_JS_TOKEN)
+          expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_JS_TOKEN)
           done()
 
     it "can output in colors", (done) ->
@@ -160,7 +168,7 @@ describe "system :: cli", ->
       system.exec cmd,
         (error, stdout, stderr) ->
           expect(error.code).to.eql 0
-          expect(stdout).to.eql(read CLI_OUTPUT_TEST_JS_TS_DIR_COLOR)
+          expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_JS_TS_DIR_COLOR)
           done()
 
     it "can compare via a dir", (done) ->
@@ -169,5 +177,5 @@ describe "system :: cli", ->
       system.exec cmd,
         (error, stdout, stderr) ->
           expect(error.code).to.eql 0
-          expect(stdout).to.eql(read CLI_OUTPUT_TEST_JS_TS_DIR)
+          expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_JS_TS_DIR)
           done()
