@@ -14,5 +14,3 @@ npm t
 git add -f lib
 
 npm run -s -- release-it -n -p -m 'v%s' -i $level
-
-npm run -s gen-docs
