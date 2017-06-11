@@ -6,8 +6,12 @@ Find similar functions and classes in your JavaScript/TypeScript code.
 
 ## Supported Languages
 
-* JavaScript ([ES3-ES7](https://github.com/jquery/esprima#features))
+* JavaScript ([ES3-ES8](https://github.com/jquery/esprima#features))
 * TypeScript
+
+### Non-Standard JavaScript Support
+
+For more info on support for ECMAScript Stage-3 and below proposals, see issue [#94](https://github.com/brentlintner/synt/issues/94).
 
 ## System Requirements
 

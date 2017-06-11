@@ -27,6 +27,7 @@ const astify = (
   code : string,
   opts : synt.CompareOptions
 ) : es.Program =>
+  // TODO: should be using parseModule/parseScript
   esprima.parse(code, {
     loc: true,
     sourceType: _.get(opts, "estype", "module")
