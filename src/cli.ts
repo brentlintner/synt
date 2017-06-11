@@ -1,5 +1,6 @@
 import program = require("commander")
 import similar = require("./similar")
+import ignore = require("ignore");
 import fs_collector = require("./cli/file_collector")
 
 const pkg = require("./../package.json")
@@ -10,10 +11,14 @@ const compare = (
 ) => {
   const files = fs_collector.files(targets)
   const nocolors : boolean = !!opts.disablecolors
+  const filter = ignore();
+  // we need to cast result of ignore.filter to any
+  // because of typings of ignore package
+  const filtered_files = filter.add(opts.ignore).filter(files) as any;
 
-  fs_collector.print(files, nocolors)
+  fs_collector.print(filtered_files, nocolors)
 
-  const { js, ts } = similar.compare(files, opts)
+  const { js, ts } = similar.compare(filtered_files, opts)
 
   similar.print(js, nocolors)
   similar.print(ts, nocolors)
@@ -40,6 +45,11 @@ const configure = () => {
     .option(
       "--estype [value]",
       "Set the JavaScript parser source type [default=module,script]")
+    .option(
+      "-i, --ignore <glob>",
+      "Set glob for files that will be ignored. WARNING: You should " +
+      "wrap glob in quote, otherwise you may get wrong result"
+    )
     .action(compare)
 
   program.on("--help", () => {

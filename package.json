@@ -67,6 +67,7 @@
     "escodegen": "^1.8.1",
     "esprima": "^4.0.0",
     "estraverse": "^4.2.0",
+    "ignore": "^3.3.3",
     "lodash": "^4.17.4",
     "typescript": "^2.3.4",
     "walk-sync": "^0.3.2"
