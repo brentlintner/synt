@@ -2,4 +2,4 @@ lib/* linguist-vendored
 test/* linguist-vendored
 bin/* linguist-vendored
 
-* text=auto
+* text eol=lf
