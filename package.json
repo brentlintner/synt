@@ -7,6 +7,8 @@
     "type": "git",
     "url": "git://github.com/brentlintner/synt.git"
   },
+  "main": "lib/index.js",
+  "types": "src/@types/index.d.ts",
   "bin": {
     "synt": "bin/synt"
   },
@@ -38,7 +40,6 @@
     "url": "https://github.com/brentlintner/synt/issues"
   },
   "homepage": "https://github.com/brentlintner/synt",
-  "main": "lib/index.js",
   "scripts": {
     "compile": "tsc",
     "clean": "rm -rf {.nyc_output,coverage,lib} && git checkout -- lib",
