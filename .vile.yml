@@ -41,6 +41,9 @@ eclint:
 
 retire:
   config:
+    package: true
+    node: true
+    js: false
     ignore:
       - lib
 
