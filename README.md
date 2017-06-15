@@ -66,9 +66,17 @@ synt.print(js)
 synt.print(ts)
 ```
 
-## External Plugins
+## Licensing
 
-* [vile-synt](https://github.com/forthright/vile-synt)
+This project is licensed under the [MPL-2.0](LICENSE) license.
+
+Any contributions made to this project are made under the current license.
+
+## Contributing
+
+Any contributions are welcome and appreciated!
+
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for more info.
 
 ## Versioning
 
@@ -79,49 +87,6 @@ This project ascribes to [semantic versioning](http://semver.org).
 `synt` is short for [synteny](http://en.wikipedia.org/wiki/Synteny), and is
 an (attempted) play on comparing code evolution to genetic (evolution).
 
-## Licensing
+## External Plugins
 
-This project is licensed under the [MPL-2.0](LICENSE) license.
-
-Any contributions made to this project are made under the current license.
-
-## Contributions
-
-Current list of [contributors](https://github.com/brentlintner/synt/graphs/contributors).
-
-Any contributions are welcome and appreciated!
-
-All you need to do is submit a [Pull Request](https://github.com/brentlintner/synt/pulls).
-
-1. Please consider tests and code quality before submitting.
-2. Please try to keep commits clean, atomic and well explained (for others).
-
-### Issues
-
-Current issue tracker is on [github](https://github.com/brentlintner/synt/issues).
-
-Even if you are uncomfortable with code, an Issue helps!
-
-### Code Of Conduct
-
-This project ascribes to [contributor-covenant.org](http://contributor-covenant.org).
-
-By participating in this project you agree to our [Code of Conduct](CODE_OF_CONDUCT.md).
-
-### Hacking
-
-    git clone git@github.com:brentlintner/synt.git
-    cd synt
-    npm i
-    npm run -s compile
-
-### Testing
-
-    npm test
-    npm run -s test-cov
-
-### Dev Scripts
-
-*watch and compile files on save*:
-
-    npm run dev
+* [vile-synt](https://github.com/forthright/vile-synt)
