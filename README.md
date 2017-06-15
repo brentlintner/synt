@@ -66,6 +66,10 @@ synt.print(js)
 synt.print(ts)
 ```
 
+## External Plugins
+
+* [vile-synt](https://github.com/forthright/vile-synt)
+
 ## Versioning
 
 This project ascribes to [semantic versioning](http://semver.org).
