@@ -191,4 +191,4 @@ export = {
   DEFAULT_TOKEN_LENGTH,
   compare,
   print: print.print
-} as synt.Module.Similar
+}

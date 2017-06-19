@@ -60,4 +60,4 @@ const interpret = (argv : string[]) => {
   program.parse(argv)
 }
 
-export = { interpret } as synt.Module.CLI
+export = { interpret }

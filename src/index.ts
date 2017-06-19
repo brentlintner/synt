@@ -1,2 +1,5 @@
 import similar = require("./similar")
-export = similar
+
+const library : synt.Lib = similar
+
+export = library

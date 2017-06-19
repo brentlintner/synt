@@ -43,4 +43,4 @@ const print_found = (
 export = {
   files: normalize_cli_targets,
   print: print_found
-} as synt.Module.FileCollector
+}

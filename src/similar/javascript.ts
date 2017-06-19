@@ -91,4 +91,4 @@ const find_similar_methods_and_classes = (
 
 export = {
   find: find_similar_methods_and_classes
-} as synt.Module.SimilarParser
+}

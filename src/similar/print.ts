@@ -59,4 +59,4 @@ const print = (
   })
 }
 
-export = { print } as synt.Module.SimilarPrint
+export = { print }

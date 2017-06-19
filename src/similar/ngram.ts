@@ -17,4 +17,4 @@ const generate = (
   return sets
 }
 
-export = { generate } as synt.Module.Ngram
+export = { generate }

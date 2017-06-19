@@ -5,7 +5,7 @@ import * as ts from "typescript";
 import * as es from "estree";
 import * as commander from "commander";
 
-declare const synt : synt.Module.Similar;
+declare const synt : synt.Lib;
 
 export = synt;
 export as namespace synt;
@@ -66,52 +66,19 @@ declare namespace synt {
     };
   }
 
-  export module Module {
-    export interface CLI {
-      interpret : (argv : string[]) => void;
-    }
+  export interface Lib {
+    compare : (
+      files : string[],
+      opts  : CompareOptions
+    ) => ParseResultGroups;
 
-    export interface FileCollector {
-      files : (
-        targets : string | string[]
-      ) => string[];
+    print : (
+      group    : synt.ParseResultGroup,
+      nocolors : boolean
+    ) => void;
 
-      print : (
-        files : string[],
-        nocolors : boolean
-      ) => string[];
-    }
-
-    export interface Similar extends SimilarPrint {
-      compare : (
-        files : string[],
-        opts  : CompareOptions
-      ) => ParseResultGroups;
-
-      DEFAULT_NGRAM_LENGTH : number;
-      DEFAULT_THRESHOLD    : number;
-      DEFAULT_TOKEN_LENGTH : number;
-    }
-
-    export interface Ngram {
-      generate : (
-        list   : string[],
-        length : number
-      ) => string[];
-    }
-
-    export interface SimilarParser {
-      find : (
-        files : string[],
-        opts : CompareOptions
-      ) => ParseResult[];
-    }
-
-    export interface SimilarPrint {
-      print : (
-        group    : synt.ParseResultGroup,
-        nocolors : boolean
-      ) => void;
-    }
+    DEFAULT_NGRAM_LENGTH : number;
+    DEFAULT_THRESHOLD    : number;
+    DEFAULT_TOKEN_LENGTH : number;
   }
 }
