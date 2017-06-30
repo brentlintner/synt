@@ -18,6 +18,7 @@ vile:
     - src/@types
     - tags
     - test/fixtures/**
+    - test/mocha.opts
     - tsconfig.json
     - tslint.json
     - tmp
@@ -34,6 +35,10 @@ depcheck:
       - src
       - node_modules
       - tmp
+
+synt:
+  ignore:
+    - lib
 
 eclint:
   ignore:
