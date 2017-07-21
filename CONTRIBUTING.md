@@ -17,8 +17,6 @@ All you need to do is submit a [Pull Request](https://github.com/brentlintner/sy
 
 ## Code Of Conduct
 
-This project ascribes to [contributor-covenant.org](http://contributor-covenant.org).
-
 By participating in this project you agree to our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Developing
