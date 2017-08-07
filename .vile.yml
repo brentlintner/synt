@@ -62,10 +62,6 @@ escomplex:
   ignore:
     - src
 
-coverage:
-  config:
-    path: coverage/lcov.info
-
 language:
   ignore:
     - lib

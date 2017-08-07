@@ -90,7 +90,7 @@
     "vile": "^0.18.3",
     "vile-coffeelint": "^0.1.16",
     "vile-comment": "^0.1.19",
-    "vile-coverage": "^0.2.15",
+    "vile-coverage": "^0.3.0",
     "vile-depcheck": "^0.1.13",
     "vile-eclint": "^0.1.14",
     "vile-escomplex": "^0.1.5",
