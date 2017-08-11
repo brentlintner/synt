@@ -1,18 +1,11 @@
 vile:
   ignore:
     - appveyor.yml
-    - bin
     - circle.yml
     - CODE_OF_CONDUCT.md
     - coffeelint.json
-    - coverage
     - .editorconfig
-    - .git
-    - .gitattributes
-    - .gitignore
     - LICENSE
-    - node_modules
-    - .nyc_output
     - package-lock.json
     - README.md
     - src/@types
@@ -21,7 +14,6 @@ vile:
     - test/mocha.opts
     - tsconfig.json
     - tslint.json
-    - tmp
     - .travis.yml
     - retire-report.json
     - .vile.yml
