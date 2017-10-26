@@ -26,12 +26,13 @@ const tokenize = (code : string) : string[] =>
 const astify = (
   code : string,
   opts : synt.CompareOptions
-) : es.Program =>
-  // TODO: should be using parseModule/parseScript
-  esprima.parse(code, {
-    loc: true,
-    sourceType: _.get(opts, "estype", "module")
-  })
+) : es.Program => {
+  const parse_opts : esprima.ParseOptions = { loc: true }
+  const method : string = _.get(opts, "estype", "module")
+  return method == "script" ?
+    esprima.parseScript(code, parse_opts) :
+    esprima.parseModule(code, parse_opts)
+}
 
 const ast_to_code = (node : es.Node) => {
   const opts = { format: { indent: { style: "  " } } }

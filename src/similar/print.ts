@@ -1,6 +1,8 @@
 import _ = require("lodash")
-import chalk = require("chalk")
 import cardinal = require("cardinal")
+
+// HACK: chalk types don't support import?
+const chalk = require("chalk")
 
 const print = (
   group : synt.ParseResultGroup,

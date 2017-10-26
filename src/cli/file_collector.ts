@@ -1,8 +1,10 @@
 import fs = require("fs")
 import path = require("path")
 import _ = require("lodash")
-import chalk = require("chalk")
 import walk_sync = require("walk-sync")
+
+// HACK: chalk types don't support import?
+const chalk = require("chalk")
 
 const all_files = (target : string) : string[] => {
   if (fs.statSync(target).isDirectory()) {
