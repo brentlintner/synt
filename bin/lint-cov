@@ -1,13 +1,11 @@
 #!/usr/bin/env node
 require("shelljs/global")
 
+set("-e")
 exec(
   "npm run -s nyc -- " +
     "check-coverage " +
       "--statements 100 " +
       "--functions 100 " +
       "--branches 100 " +
-      "--lines 100",
-  function (code) {
-    if (code !== 0) exit(code)
-  })
+      "--lines 100")
