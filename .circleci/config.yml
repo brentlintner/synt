@@ -10,7 +10,6 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run: "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
       - run: git fetch origin $CIRCLE_BRANCH
-      - run: npm i -g npm
       - run:
           name: Versions
           command: sh bin/list-env-versions
