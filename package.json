@@ -61,6 +61,7 @@
     "@types/estraverse": "0.0.6",
     "@types/estree": "0.0.38",
     "@types/lodash": "^4.14.80",
+    "@types/node": "^10.5.7",
     "cardinal": "^1.0.0",
     "chalk": "^2.1.0",
     "commander": "^2.10.0",

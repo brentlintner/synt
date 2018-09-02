@@ -1,5 +1,6 @@
 /// <reference types="estree" />
 /// <reference types="commander" />
+/// <reference types="node" />
 
 import * as ts from "typescript";
 import * as es from "estree";
