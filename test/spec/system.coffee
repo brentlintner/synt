@@ -33,6 +33,8 @@ CLI_OUTPUT_TEST_JS_TS_DIR = path
   .join FIXTURES, "cli_output", "test.dir.txt"
 CLI_OUTPUT_TEST_JS_TS_DIR_COLOR = path
   .join FIXTURES, "cli_output", "test.dir.color.txt"
+CLI_OUTPUT_TEST_IGNORE_TS_COLOR = path
+  .join FIXTURES, "cli_output", "test.igore.ts.color.txt"
 
 cli_output = (path) ->
   if on_win
@@ -182,4 +184,13 @@ describe "system :: cli", ->
         (error, stdout, stderr) ->
           expect(error.code).to.eql 0
           expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_JS_TS_DIR)
+          done()
+
+    it "can ignore ts files", (done) ->
+      cmd = "analyze -i *.ts #{SYSTEM}"
+
+      system.exec cmd,
+        (error, stdout, stderr) ->
+          expect(error.code).to.eql 0
+          expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_IGNORE_TS_COLOR)
           done()
