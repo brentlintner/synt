@@ -1,17 +1,13 @@
-# synt [![Circle CI](https://circleci.com/gh/brentlintner/synt.svg?style=shield)](https://circleci.com/gh/brentlintner/synt) [![Windows Build status](https://ci.appveyor.com/api/projects/status/t2hy3nxlqc685n1m/branch/master?svg=true)](https://ci.appveyor.com/project/brentlintner/synt/branch/master) [![travis build](https://travis-ci.org/brentlintner/synt.svg?branch=master)](https://travis-ci.org/brentlintner/synt) [![npm version](https://badge.fury.io/js/synt.svg)](https://badge.fury.io/js/synt)
+# synt [![Circle CI](https://circleci.com/gh/brentlintner/synt.svg?style=shield)](https://circleci.com/gh/brentlintner/synt) [![Windows Build status](https://ci.appveyor.com/api/projects/status/t2hy3nxlqc685n1m/branch/master?svg=true)](https://ci.appveyor.com/project/brentlintner/synt/branch/master) [![npm version](https://badge.fury.io/js/synt.svg)](https://badge.fury.io/js/synt)
 
 Find similar functions and classes in your JavaScript/TypeScript code.
 
-![demo image](https://user-images.githubusercontent.com/93340/26853130-c50f2724-4ade-11e7-905e-6923af2a759d.png)
+![demo image](https://github.com/brentlintner/synt/assets/93340/1f4f73c2-ca4c-4d55-84a9-9fe5af3489ca)
 
 ## Supported Languages
 
-* JavaScript ([ES3-ES8](https://github.com/jquery/esprima#features))
-* TypeScript
-
-### Non-Standard JavaScript Support
-
-For more info on support for ECMAScript Stage-3 and below proposals, see issue [#94](https://github.com/brentlintner/synt/issues/94).
+* JavaScript ([ES3-ES15](https://github.com/eslint/espree?tab=readme-ov-file#options))
+* TypeScript ([5.x](https://github.com/microsoft/TypeScript/tree/v5.3.3))
 
 ## System Requirements
 
@@ -55,10 +51,11 @@ const synt = require("synt")
 const files = [ "a.js", "b.ts" ]
 
 const { js, ts } = synt.compare(files, {
-  similarity: 70,
+  similarity: 80,
   ngram: 1,
-  minlength: 10,
-  estype: "module"
+  minLength: 20,
+  sourceType: "module",
+  ecmaVersion: 6
 })
 
 synt.print(js)
@@ -86,7 +83,3 @@ This project ascribes to [semantic versioning](http://semver.org).
 
 `synt` is short for [synteny](http://en.wikipedia.org/wiki/Synteny), and is
 an (attempted) play on comparing code evolution to genetic (evolution).
-
-## External Plugins
-
-* [vile-synt](https://github.com/forthright/vile-synt)

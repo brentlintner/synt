@@ -1,0 +1,35 @@
+{
+  "plugins": [
+    "eslint-plugin-jsdoc",
+    "eslint-plugin-prefer-arrow",
+    "@typescript-eslint",
+    "@stylistic/ts"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "ignorePatterns": [
+    "bin",
+    "lib",
+    "test/fixtures"
+  ],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "sourceType": "module"
+  },
+  "root": true,
+  "rules": {
+    "@stylistic/ts/semi": ["error", "never"],
+    "@stylistic/ts/comma-dangle": ["error", "never"],
+    "@stylistic/ts/type-annotation-spacing": ["error", { "before": true, "after": true }],
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-var-requires": "off"
+  }
+}

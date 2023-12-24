@@ -50,44 +50,43 @@ cli_output = (path) ->
 describe "system :: cli", ->
   describe "javascript", ->
     it "can compare similar functions and classes", (done) ->
-      cmd = "analyze -d #{FILE_JS}"
+      cmd = "analyze -n #{FILE_JS}"
 
       system.exec cmd,
         (error, stdout, stderr) ->
-          expect(error.code).to.eql 0
           expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_JS)
+          expect(error.code).to.eql 0
           done()
 
     describe "es modules", ->
       describe "when estype is not set (module by default)", ->
         it "parses the code as expected", (done) ->
-          cmd = "analyze -d #{FILE_JS_ES}"
+          cmd = "analyze -n #{FILE_JS_ES}"
 
           system.exec cmd,
             (error, stdout, stderr) ->
-              expect(error.code).to.eql 0
               expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_ES_MODULES)
+              expect(error.code).to.eql 0
               done()
 
       describe "when estype is set as script", ->
         it "fails to parse the code", (done) ->
-          cmd = "analyze -d --estype script #{FILE_JS_ES}"
+          cmd = "analyze -n -a 6 -t script #{FILE_JS_ES}"
 
           system.exec cmd,
             (error, stdout, stderr) ->
-              expect(error.code).to.eql 1
-              expect(stderr).to.match /esprima/i
-              expect(stderr).to.match /line 1: unexpected token/i
+              expect(stderr).to.match /espree/i
+              expect(stderr).to.match /'import' and 'export' may appear only with/i
               expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_ES_MODULES_FAIL)
+              expect(error.code).to.eql 1
               done()
 
     describe "when a file fails to parse", ->
       it "also shows the filename", (done) ->
-        cmd = "analyze -d --estype script #{FILE_JS_ES}"
+        cmd = "analyze -n -t script #{FILE_JS_ES}"
 
         system.exec cmd,
           (error, stdout, stderr) ->
-            expect(error.code).to.eql 1
             if on_win
               expect(stderr)
                 .to.match /Error: in test\\fixtures\\system\\test\-es\.js/gi
@@ -95,19 +94,29 @@ describe "system :: cli", ->
               expect(stderr)
                 .to.match new RegExp("Error: in test/fixtures/system/test-es.js")
 
-            expect(stderr).to.match /line 1: unexpected token/i
-            expect(stderr).match /esprima/i
+            expect(stderr).to.match /'import' and 'export' may appear only with/i
+            expect(stderr).match /espree/i
             expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_ES_MODULES_FAIL)
+            expect(error.code).to.eql 1
             done()
 
   describe "typescript", ->
     it "can compare similar functions and classes", (done) ->
-      cmd = "analyze -d #{FILE_TS}"
+      cmd = "analyze -n #{FILE_TS}"
 
       system.exec cmd,
         (error, stdout, stderr) ->
-          expect(error.code).to.eql 0
           expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_TS)
+          expect(error.code).to.eql 0
+          done()
+
+    it "can exit with a non zero code", (done) ->
+      cmd = "analyze -e -n #{FILE_TS}"
+
+      system.exec cmd,
+        (error, stdout, stderr) ->
+          expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_TS)
+          expect(error.code).to.eql 1
           done()
 
   describe "in general", ->
@@ -135,35 +144,44 @@ describe "system :: cli", ->
 
       system.exec cmd,
         (error, stdout, stderr) ->
-          expect(error.code).to.eql 0
           expect(stdout).to.match new RegExp pkg.version
+          expect(error.code).to.eql 0
           done()
 
     it "can set analyze sim threshold", (done) ->
-      cmd = "analyze -s 95 -d #{FILE_JS}"
+      cmd = "analyze -s 95 -n #{FILE_JS}"
 
       system.exec cmd,
         (error, stdout, stderr) ->
-          expect(error.code).to.eql 0
           expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_JS_SIM)
+          expect(error.code).to.eql 0
           done()
 
     it "can set ngram level", (done) ->
-      cmd = "analyze -n 10 -d #{FILE_JS}"
+      cmd = "analyze -g 10 -n #{FILE_JS}"
 
       system.exec cmd,
         (error, stdout, stderr) ->
-          expect(error.code).to.eql 0
           expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_JS_NGRAM)
+          expect(error.code).to.eql 0
           done()
 
     it "can set token level", (done) ->
-      cmd = "analyze -m 50 -d #{FILE_JS}"
+      cmd = "analyze -m 50 -n #{FILE_JS}"
 
       system.exec cmd,
         (error, stdout, stderr) ->
-          expect(error.code).to.eql 0
           expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_JS_TOKEN)
+          expect(error.code).to.eql 0
+          done()
+
+    it "can set non zero exit status", (done) ->
+      cmd = "analyze -e -m 50 -n #{FILE_JS}"
+
+      system.exec cmd,
+        (error, stdout, stderr) ->
+          expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_JS_TOKEN)
+          expect(error.code).to.eql 1
           done()
 
     it "can output in colors", (done) ->
@@ -171,15 +189,15 @@ describe "system :: cli", ->
 
       system.exec cmd,
         (error, stdout, stderr) ->
-          expect(error.code).to.eql 0
           expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_JS_TS_DIR_COLOR)
+          expect(error.code).to.eql 0
           done()
 
     it "can compare via a dir", (done) ->
-      cmd = "analyze -d #{SYSTEM}"
+      cmd = "analyze -n #{SYSTEM}"
 
       system.exec cmd,
         (error, stdout, stderr) ->
-          expect(error.code).to.eql 0
           expect(stdout).to.eql(cli_output CLI_OUTPUT_TEST_JS_TS_DIR)
+          expect(error.code).to.eql 0
           done()

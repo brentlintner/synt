@@ -1,0 +1,38 @@
+
+{
+  "git": {
+    "changelog": "",
+    "requireCleanWorkingDir": true,
+    "requireBranch": false,
+    "requireUpstream": false,
+    "requireCommits": false,
+    "requireCommitsFail": true,
+    "commitsPath": "",
+    "addUntrackedFiles": false,
+    "commit": true,
+    "commitMessage": "v${version}",
+    "commitArgs": [],
+    "tag": true,
+    "tagExclude": null,
+    "tagName": null,
+    "tagMatch": null,
+    "getLatestTagFromAllRefs": false,
+    "tagAnnotation": "v${version}",
+    "tagArgs": [],
+    "push": true,
+    "pushArgs": ["--follow-tags"],
+    "pushRepo": ""
+  },
+  "npm": {
+    "publish": true,
+    "publishPath": ".",
+    "publishArgs": [],
+    "tag": null,
+    "otp": null,
+    "ignoreVersion": false,
+    "allowSameVersion": false,
+    "versionArgs": [],
+    "skipChecks": false,
+    "timeout": 10
+  }
+}

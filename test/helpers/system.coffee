@@ -31,25 +31,25 @@ exec = (args, cb, stdio) ->
     unless cb_called
       cb_called = true
       if on_win
-        out = new Buffer(out).toString("utf-8").replace(/\r\n/g, "\n")
+        out = new Buffer.from(out).toString("utf-8").replace(/\r\n/g, "\n")
       else
-        out = new Buffer(out).toString("utf-8")
+        out = new Buffer.from(out).toString("utf-8")
       cb(
         e,
         out,
-        new Buffer(err).toString("utf-8"))
+        new Buffer.from(err).toString("utf-8"))
 
   proc.on "close", (code) ->
     unless cb_called
       cb_called = true
       if on_win
-        out = new Buffer(out).toString("utf-8").replace(/\r\n/g, "\n")
+        out = new Buffer.from(out).toString("utf-8").replace(/\r\n/g, "\n")
       else
-        out = new Buffer(out).toString("utf-8")
+        out = new Buffer.from(out).toString("utf-8")
       cb(
         { code: code },
         out,
-        new Buffer(err).toString("utf-8"))
+        new Buffer.from(err).toString("utf-8"))
 
   proc
 

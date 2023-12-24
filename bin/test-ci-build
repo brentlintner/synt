@@ -1,7 +1,0 @@
-#!/usr/bin/env node
-require("shelljs/global")
-
-set("-e")
-exec("npm run -s compile")
-exec("npm run -s test-cov")
-exec("npm run -s lint-cov")

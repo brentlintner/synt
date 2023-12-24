@@ -1,5 +1,6 @@
-lib/* linguist-vendored
-test/* linguist-vendored
-bin/* linguist-vendored
+lib/** linguist-generated
+test/fixtures/** linguist-generated
+bin/** linguist-vendored
+package-lock.json linguist-generated
 
 * text eol=lf

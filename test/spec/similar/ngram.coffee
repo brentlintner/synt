@@ -1,7 +1,6 @@
-mimus = require "mimus"
 sinon_chai = require "./../../helpers/sinon_chai"
 chai = require "chai"
-ngram = mimus.require "./../../../lib/similar/ngram", __dirname, []
+ngram = require "./../../../lib/similar/ngram"
 expect = chai.expect
 
 describe "unit :: ngram", ->

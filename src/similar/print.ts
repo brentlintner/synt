@@ -1,12 +1,10 @@
-import _ = require("lodash")
-import cardinal = require("cardinal")
-
-// HACK: chalk types don't support import?
-const chalk = require("chalk")
+import * as _ from "lodash"
+import * as cardinal from "cardinal"
+import * as chalk from "chalk"
 
 const print = (
   group : synt.ParseResultGroup,
-  nocolors : boolean
+  color : boolean
 ) : void => {
   _.each(group, (results : synt.ParseResultMatchList, sim : string) => {
     _.each(results, (result : synt.ParseResult[]) => {
@@ -14,51 +12,55 @@ const print = (
 
       console.log("")
 
-      const match_sim = sim + "% match"
-      if (nocolors) {
+      const match_sim = sim + "% similar"
+      if (color) {
+        console.log(chalk.red.bold(match_sim))
+      } else {
         console.log(match_sim)
-      } else {
-        console.log(chalk.white.bgRed.bold(match_sim))
       }
 
       console.log("")
-      if (nocolors) {
-        console.log(`in: ${ src.path }`)
-      } else {
+      if (color) {
         console.log(chalk.gray("in: ") + chalk.green(src.path))
+      } else {
+        console.log(`in: ${ src.path }`)
       }
 
       console.log("")
-      if (nocolors) {
-        console.log(src.code)
-      } else {
+      if (color) {
         console.log(cardinal.highlight(src.code, {
           firstline: src.pos.start.line,
           linenos: true
         }))
+      } else {
+        console.log(src.code.split("\n").map((line : string, idx : number) => {
+          return `${src.pos.start.line + idx + 1}: ${line}`
+        }).join("\n"))
       }
       console.log("")
 
       if (src.path !== cmp.path) {
-        if (nocolors) {
-          console.log(`in: ${ cmp.path }`)
-        } else {
+        if (color) {
           console.log(chalk.gray("in: ") + chalk.green(cmp.path))
+        } else {
+          console.log(`in: ${ cmp.path }`)
         }
         console.log("")
       }
 
-      if (nocolors) {
-        console.log(cmp.code)
-      } else {
+      if (color) {
         console.log(cardinal.highlight(cmp.code, {
           firstline: cmp.pos.start.line,
           linenos: true
         }))
+      } else {
+        console.log(cmp.code.split("\n").map((line : string, idx : number) => {
+          return `${cmp.pos.start.line + idx + 1}: ${line}`
+        }).join("\n"))
       }
 
     })
   })
 }
 
-export = { print }
+export { print }

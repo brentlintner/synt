@@ -1,15 +1,18 @@
-version: 2
+version: '2.1'
+
+orbs:
+  node: circleci/node@5.1.1
 
 jobs:
   build:
     docker:
-      - image: circleci/node:8-jessie-browsers
+      - image: cimg/base:stable
     steps:
       - checkout
+      - node/install:
+          node-version: '20.10'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-      - run: "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
-      - run: git fetch origin $CIRCLE_BRANCH
       - run:
           name: Versions
           command: sh bin/list-env-versions
@@ -18,7 +21,7 @@ jobs:
           command: npm i
       - run:
           name: Test
-          command: npm run -s test-ci-build
+          command: npm run test-ci-build
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
