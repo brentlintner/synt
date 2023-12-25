@@ -1,8 +1,8 @@
-import _ = require("lodash")
-import ngram = require("./similar/ngram")
-import parse_js = require("./similar/javascript")
-import parse_ts = require("./similar/typescript")
-import print = require("./similar/print")
+import * as _ from "lodash"
+import * as ngram from "./similar/ngram"
+import * as parse_js from "./similar/javascript"
+import * as parse_ts from "./similar/typescript"
+import { print } from "./similar/print"
 
 const DEFAULT_NGRAM_LENGTH = 1
 const DEFAULT_THRESHOLD    = 70
@@ -157,11 +157,10 @@ const _compare = (
   const parse = is_ts ? parse_ts : parse_js
   const items : synt.ParseResult[] = parse.find(files, opts)
   const group : synt.ParseResultGroup = {}
-  const t_len = parse_token_length(_.toString(opts.minlength))
+  const t_len = parse_token_length(_.toString(opts.minLength))
   const n_len = parse_ngram_length(_.toString(opts.ngram))
   const sim_min = parse_threshold(_.toString(opts.similarity))
 
-  // TODO: better perf (this + ngram gen is at least O(n^3))
   each_pair(items, (src : synt.ParseResult, cmp : synt.ParseResult) => {
     if (false_positive(src, cmp, t_len)) return
     const src_grams = ngram.generate(src.tokens, n_len)
@@ -185,10 +184,10 @@ const compare = (
   return { js: js_group, ts: ts_group }
 }
 
-export = {
+export {
   DEFAULT_NGRAM_LENGTH,
   DEFAULT_THRESHOLD,
   DEFAULT_TOKEN_LENGTH,
   compare,
-  print: print.print
+  print
 }

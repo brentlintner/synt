@@ -1,11 +1,6 @@
-import _ = require("lodash")
-import fs = require("fs")
-import ts = require("typescript")
-
-// TODO: Write/use a proper lexer for TS code
-//       This significantly simplifies tokenization
-//       and so it may be less accurate than
-//       matching using a properly lexed token stream
+import * as _ from "lodash"
+import * as fs from "fs"
+import * as ts from "typescript"
 
 const STOP_AT_NODES : ts.SyntaxKind[] = [
   ts.SyntaxKind.ArrayType,
@@ -59,7 +54,7 @@ const PASSTHROUGH_NODES : ts.SyntaxKind[] = FUNCTION_OR_CLASS_NODE.concat([
 const astify = (
   code : string,
   filepath : string,
-  opts : synt.CompareOptions
+  _opts : synt.CompareOptions
 ) : ts.SourceFile => {
   ts.createProgram([ filepath ], {})
   return ts.createSourceFile(
@@ -159,6 +154,6 @@ const find_similar_methods_and_classes = (
     return parse_methods_and_classes(node, root_node, filepath)
   })
 
-export = {
-  find: find_similar_methods_and_classes
+export {
+  find_similar_methods_and_classes as find
 }

@@ -1,40 +1,39 @@
-found: test/fixtures/system/test.ts
 
-87% match
-
-in: test/fixtures/system/test.ts
-
-class Greeter {
-  greeting: string;
-  constructor(message: string) {
-    this.greeting = message;
-  }
-  static greet(a, y, x) {
-    let b = y + x
-    return a + "Hello, " + this.greeting;
-  }
-}
-
-class FooGreeter {
-  constructor(message: string) {
-    this.greeting = message;
-  }
-  static greet(a, y, x) {
-    let b = x + y
-    return a + "Hello, " + this.greeting;
-  }
-}
-
-100% match
+87% similar
 
 in: test/fixtures/system/test.ts
 
-static greet(a, y, x) {
-    let b = y + x
-    return a + "Hello, " + this.greeting;
-  }
+21: class Greeter {
+22:   greeting: string;
+23:   constructor(message: string) {
+24:     this.greeting = message;
+25:   }
+26:   static greet(a, y, x) {
+27:     let b = y + x
+28:     return a + "Hello, " + this.greeting;
+29:   }
+30: }
 
-static greet(a, y, x) {
-    let b = x + y
-    return a + "Hello, " + this.greeting;
-  }
+32: class FooGreeter {
+33:   constructor(message: string) {
+34:     this.greeting = message;
+35:   }
+36:   static greet(a, y, x) {
+37:     let b = x + y
+38:     return a + "Hello, " + this.greeting;
+39:   }
+40: }
+
+100% similar
+
+in: test/fixtures/system/test.ts
+
+26: static greet(a, y, x) {
+27:     let b = y + x
+28:     return a + "Hello, " + this.greeting;
+29:   }
+
+36: static greet(a, y, x) {
+37:     let b = x + y
+38:     return a + "Hello, " + this.greeting;
+39:   }

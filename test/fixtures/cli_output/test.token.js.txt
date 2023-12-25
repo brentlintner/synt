@@ -1,29 +1,28 @@
-found: test/fixtures/system/test.js
 
-89% match
+89% similar
 
 in: test/fixtures/system/test.js
 
-class FooBazzzz {
-  constructor() {
-  }
-  static get area() {
-    console.log('a');
-    console.log('b');
-    console.log('c');
-    console.log('c');
-    console.log('c');
-  }
-}
+28: class FooBazzzz {
+29:   constructor() {
+30:   }
+31:   static get area() {
+32:     console.log('a');
+33:     console.log('b');
+34:     console.log('c');
+35:     console.log('c');
+36:     console.log('c');
+37:   }
+38: }
 
-class FooBarrr {
-  constructor() {
-  }
-  static get area() {
-    console.log('a');
-    console.log('b');
-    console.log('c');
-    console.log('c');
-    console.log('c');
-  }
-}
+41: class FooBarrr {
+42:   constructor() {
+43:   }
+44:   static get area() {
+45:     console.log('a');
+46:     console.log('b');
+47:     console.log('c');
+48:     console.log('c');
+49:     console.log('c');
+50:   }
+51: }

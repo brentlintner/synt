@@ -17,4 +17,4 @@ const generate = (
   return sets
 }
 
-export = { generate }
+export { generate }

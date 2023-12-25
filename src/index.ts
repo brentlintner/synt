@@ -1,4 +1,4 @@
-import similar = require("./similar")
+import * as similar from "./similar"
 
 const library : synt.Lib = similar
 

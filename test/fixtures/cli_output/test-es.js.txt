@@ -1,13 +1,12 @@
-found: test/fixtures/system/test-es.js
 
-76% match
+76% similar
 
 in: test/fixtures/system/test-es.js
 
-function diag(x, y) {
-  return sqrt(square(x) + square(y));
-}
+10: function diag(x, y) {
+11:   return sqrt(square(x) + square(y));
+12: }
 
-function dude(x, y) {
-  return sqrt(square(x ^ 2) + square(y));
-}
+14: function dude(x, y) {
+15:   return sqrt(square(x ^ 2) + square(y));
+16: }

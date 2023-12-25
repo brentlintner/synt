@@ -1,19 +1,18 @@
 {
   "compilerOptions": {
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
     "module": "commonjs",
+    "target": "es6",
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "alwaysStrict": true,
     "noUnusedLocals": true,
-    "outDir": "lib",
     "removeComments": true,
+    "outDir": "lib",
     "rootDir": "src",
-    "target": "ES5",
     "typeRoots": [
       "src/@types"
     ]

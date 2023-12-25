@@ -1,83 +1,82 @@
-found: test/fixtures/system/test.js
 
-83% match
-
-in: test/fixtures/system/test.js
-
-function (a, b) {
-  const dx = a.x - b.x;
-  const dy = a.y - b.y;
-  return Math.sqrt(dx * dx + dy * dy);
-}
-
-function (an, ab) {
-  const dx = an.x - ab.x;
-  const dy = an.y - ab.y;
-  return Math.sqrt(dx * dx + dy * dy);
-}
-
-89% match
+83% similar
 
 in: test/fixtures/system/test.js
 
-class FooBazzzz {
-  constructor() {
-  }
-  static get area() {
-    console.log('a');
-    console.log('b');
-    console.log('c');
-    console.log('c');
-    console.log('c');
-  }
-}
+64: function (a, b) {
+65:   const dx = a.x - b.x;
+66:   const dy = a.y - b.y;
+67:   return Math.sqrt(dx * dx + dy * dy);
+68: }
 
-class FooBarrr {
-  constructor() {
-  }
-  static get area() {
-    console.log('a');
-    console.log('b');
-    console.log('c');
-    console.log('c');
-    console.log('c');
-  }
-}
+71: function (an, ab) {
+72:   const dx = an.x - ab.x;
+73:   const dy = an.y - ab.y;
+74:   return Math.sqrt(dx * dx + dy * dy);
+75: }
 
-93% match
+89% similar
 
 in: test/fixtures/system/test.js
 
-(a, b) => {
-  console.log(b);
-  if (a) {
-    console.log(a);
-  }
-}
+28: class FooBazzzz {
+29:   constructor() {
+30:   }
+31:   static get area() {
+32:     console.log('a');
+33:     console.log('b');
+34:     console.log('c');
+35:     console.log('c');
+36:     console.log('c');
+37:   }
+38: }
 
-(a, b) => {
-  console.log();
-  if (!a) {
-    console.log(a);
-  }
-}
+41: class FooBarrr {
+42:   constructor() {
+43:   }
+44:   static get area() {
+45:     console.log('a');
+46:     console.log('b');
+47:     console.log('c');
+48:     console.log('c');
+49:     console.log('c');
+50:   }
+51: }
 
-100% match
+93% similar
 
 in: test/fixtures/system/test.js
 
-function () {
-  console.log('a');
-  console.log('b');
-  console.log('c');
-  console.log('c');
-  console.log('c');
-}
+2: (a, b) => {
+3:   console.log(b);
+4:   if (a) {
+5:     console.log(a);
+6:   }
+7: }
 
-function () {
-  console.log('a');
-  console.log('b');
-  console.log('c');
-  console.log('c');
-  console.log('c');
-}
+10: (a, b) => {
+11:   console.log();
+12:   if (!a) {
+13:     console.log(a);
+14:   }
+15: }
+
+100% similar
+
+in: test/fixtures/system/test.js
+
+32: function () {
+33:   console.log('a');
+34:   console.log('b');
+35:   console.log('c');
+36:   console.log('c');
+37:   console.log('c');
+38: }
+
+45: function () {
+46:   console.log('a');
+47:   console.log('b');
+48:   console.log('c');
+49:   console.log('c');
+50:   console.log('c');
+51: }
