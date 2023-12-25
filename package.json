@@ -47,9 +47,10 @@
     "lint": "eslint .; coffeelint -q test",
     "lint-cov": "nyc check-coverage --statements 100 --functions 100 --branches 100 --lines 100",
     "release": "release-it",
+    "security": "retire",
     "test": "mocha --require coffeescript/register -R dot -s 2000 --recursive 'test/spec/**/*.coffee'",
     "test-cov": "nyc -r lcov -r text -x test/fixtures npm run test",
-    "test-ci-build": "npm run lint && npm run compile && npm run test-cov && npm run lint-cov",
+    "test-ci-build": "npm run lint && && npm run security && npm run compile && npm run test-cov && npm run lint-cov",
     "tsc": "tsc"
   },
   "dependencies": {
