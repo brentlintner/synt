@@ -17,7 +17,7 @@
     "tagName": null,
     "tagMatch": null,
     "getLatestTagFromAllRefs": false,
-    "tagAnnotation": "v${version}",
+    "tagAnnotation": "${version}",
     "tagArgs": [],
     "push": true,
     "pushArgs": ["--follow-tags"],
