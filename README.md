@@ -2,8 +2,6 @@
 
 Find similar functions and classes in your JavaScript/TypeScript code.
 
-![demo image](https://github.com/brentlintner/synt/assets/93340/1f4f73c2-ca4c-4d55-84a9-9fe5af3489ca)
-
 ## Supported Languages
 
 * JavaScript ([ES3-ES15](https://github.com/eslint/espree?tab=readme-ov-file#options))
